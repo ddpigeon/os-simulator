@@ -123,15 +123,19 @@ table input {
 }
 
 table input:hover{
-  background-color: #FCBA28;
+  background-color: #c8f9ff;
   color:#000000;
 }
 
-#outputTable th,
+#outputTable th{
+  padding: 10px !important;
+  background-color: #000;
+  color: rgb(0, 255, 255);
+}
 #outputTable td{
   padding: 10px !important;
   background-color: #000;
-  color: #FCBA28;
+  color: #fdfdfc;
 }
 
 td {

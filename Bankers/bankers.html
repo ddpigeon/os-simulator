@@ -225,6 +225,29 @@
     .optionp{
       border-radius: 10px;
     }
+
+    .Simulate{
+      background-color: #0f0d0e;
+      color: #ffffff;
+      border-radius: 5px;
+      border: 2px solid rgb(0, 255, 255);
+      cursor: pointer;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      margin-left: 50px;
+      margin-top: 20px;
+      transition-duration: 0.5s;
+      font: 15px 'Outfit', sans-serif;
+      font-weight: 550;
+    }
+
+    .Simulate:hover {
+      background-color: rgb(0, 255, 255);
+      color: #0b0005;
+    }
   </style>
 </head>
 
@@ -301,7 +324,7 @@
     <input type="text" id="request" placeholder="e.g., 3 2 4" class="userinput">
   </div>
 
-  <button id="simulate-button">Simulate</button>
+  <button id="simulate-button" class="Simulate">Simulate</button>
 
   <div id="output"></div>
 

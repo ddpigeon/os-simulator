@@ -46,7 +46,7 @@
       width: 400px;
       padding: 20px;
       border-radius: 20px;
-      border: solid 3px #FCBA28;
+      border: solid 3px rgb(0, 255, 255);
       background: rgb(0, 0, 0);
       color: rgb(255, 255, 255);
     }
@@ -191,7 +191,7 @@ margin: 0 20px;
 }
 
 a {
-color: #FCBA28;
+color: #28cefc;
 text-decoration: none;
 font-size: 20px;
 font-weight:bold;
@@ -268,7 +268,21 @@ display: block;
   color: #0b0005;
 }
 
-    
+.runButton{
+  background-color: #0f0d0e; 
+  color: #ffffff; 
+  border-radius: 5px;
+  border: 2px solid rgb(0, 255, 255);
+}
+
+.linkk:hover{
+  background-color: rgb(0, 255, 255);
+  color:#000000
+}
+
+.rr{
+  color:white
+}
     </style>
 </head>
 
@@ -402,27 +416,27 @@ display: block;
 
 
 
-    <div class="well">
+    <div class="well" style="border-radius: 10px; border-color: rgb(0, 255, 255);">
 
       <div class="row">
 
         <div class="col-md-4">
           <div style=" display:inline-block;">
-            <label style="color: #FCBA28;">Algorithm:</label>
+            <label style="color:white;">Algorithm:</label>
           </div>
 
-          <p style="margin-top:10px; color: #FCBA28;" id="algorithm_explanation">
+          <p style="margin-top:10px; color: white;" id="algorithm_explanation">
           </p>
-          <div class="btn-group algorithm_dropdown" style="margin-left:5px; color: #FCBA28;">
-            <button type="button" style="color: #000000;background-color: #FCBA28;" id="algorithm_button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+          <div class="btn-group algorithm_dropdown" style="margin-left:5px; color: #d9fc28;">
+            <button type="button" style="color: #ffffff; background-color: #000000; border-color: rgb(0, 255, 255);" id="algorithm_button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
               aria-expanded="false">
               FCFS <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a calcStyle="FCFS" id="simple_calc">First Come First Served</a></li>
-              <li><a calcStyle="SJF" id="simple_calc">Shortest Job First (non-premptive)</a></li>
-              <li><a calcStyle="Round Robin" id="fast_calc">Round Robin</a></li>
-              <li><a calcStyle="Priority" id="fast_calc">Priority</a></li>
+              <li><a calcStyle="FCFS" id="simple_calc" class="linkk">First Come First Served</a></li>
+              <li><a calcStyle="SJF" id="simple_calc" class="linkk">Shortest Job First (non-premptive)</a></li>
+              <li><a calcStyle="Round Robin" id="fast_calc" class="linkk">Round Robin</a></li>
+              <li><a calcStyle="Priority" id="fast_calc" class="linkk">Priority</a></li>
             </ul>
           </div>
 
@@ -431,17 +445,17 @@ display: block;
         </div><!-- /column -->
         <div class="col-md-4">
           <div>
-            <label style="color: #FCBA28;">Number of Processes:</label>
+            <label style="color: #ffffff;">Number of Processes:</label>
           </div>
           <div class="input-group">
             <span class="input-group-btn">
-              <button style="background-color: #FCBA28;color: #000000;" id='remove_row' type="button" class="btn btn-default btn-number minusbtn" data-type="minus">
+              <button style="background-color: #ffffff;color: #000000;" id='remove_row' type="button" class="btn btn-default btn-number minusbtn" data-type="minus">
                 <span class="glyphicon glyphicon-minus"></span>
               </button>
             </span>
             <input style="color: #ffffff;" id="proccess_num" disabled="disabled" class="form-control input-number" value="3">
             <span class="input-group-btn">
-              <button style="background-color: #FCBA28;color: #000000;" id='add_row' type="button" class="btn btn-default btn-number plusbtn" data-type="plus">
+              <button style="background-color: #ffffff;color: #000000;" id='add_row' type="button" class="btn btn-default btn-number plusbtn" data-type="plus">
                 <span class="glyphicon glyphicon-plus"></span>
               </button>
             </span>
@@ -470,11 +484,11 @@ display: block;
 
           <div class="hidden" id="solver_group">
             <div style="margin-top:20px; ">
-              <label>Time Quantum:</label>
+              <label class="rr">Time Quantum:</label>
             </div>
             <div class="input-group">
               <span class="input-group-btn">
-                <button style="background-color: #FCBA28; color: #000000;" id="subtract_quantum" type="button" class="btn btn-default btn-number" data-type="minus"
+                <button style="background-color: #ffffff; color: #000000;" id="subtract_quantum" type="button" class="btn btn-default btn-number" data-type="minus"
                   data-field="quant[1]">
                   <span class="glyphicon glyphicon-minus"></span>
                 </button>
@@ -482,7 +496,7 @@ display: block;
               <input style="color: #ffffff;background-color: #000000;" id="enter_quantum" type="text" name="quant[1]" class="form-control input-number" value="2"
                 style="background-color:rgb(0, 0, 0)">
               <span class="input-group-btn">
-                <button style="background-color: #FCBA28; color: #000000;" id="add_quantum" type="button" class="btn btn-default btn-number" data-type="plus"
+                <button style="background-color: #ffffff; color: #000000;" id="add_quantum" type="button" class="btn btn-default btn-number" data-type="plus"
                   data-field="quant[1]">
                   <span class="glyphicon glyphicon-plus"></span>
                 </button>
@@ -496,13 +510,13 @@ display: block;
 
 
         <div style="display: block; text-align: center;">
-          <p style="color: #FCBA28;">Click on the run button to show the Output Table</p>
-          <button style="background-color: #FCBA28;color: #000000;" id="runBtn" class="runButton">Run</button>
+          <p style="color: #ffffff;">Click on the run button to show the Output Table</p>
+          <button style="background-color: #000000;color: #ffffff;" id="runBtn" class="runButton">Run</button>
         </div>
 
         <div style="display: block; text-align: center;">
-          <p style="color: #FCBA28;">Click on the Reset button to run another program</p>
-          <button style="background-color: #FCBA28; color: #000000;" onclick=(location.reload()) class="runButton">Reset</button>
+          <p style="color: #ffffff;">Click on the Reset button to run another program</p>
+          <button style="background-color: #000000; color: #ffffff;" onclick=(location.reload()) class="runButton">Reset</button>
         </div>
 
         <!-- <div class="col-md-4" style="margin-top:20px;">
@@ -588,17 +602,18 @@ display: block;
   </div>
 
 
-    <span style="font-size: large; color: #FCBA28;">CPU Utilization:
-      <div id="utilization" style="color:rgb(255, 255, 255);"></div>
+    <span style="font-size: large; color: #ffffff;">CPU Utilization:
+      <div id="utilization" style="color:rgb(0, 255, 255);"></div>
     </span>
-    <span style="font-size: large; color: #FCBA28;">Average waiting time:
-      <div id="avgwt" style="color:rgb(255, 255, 255);"></div>
+    <span style="font-size: large; color: #ffffff;">Average waiting time:
+      <div id="avgwt" style="color:rgb(0, 255, 255);"></div>
     </span>
-    <span style="font-size: large; color: #FCBA28">Average turn around time:
-      <div id="avgtat" style="color:rgb(255, 255, 255);"></div>
+    <span style="font-size: large; color: #ffffff">Average turn around time:
+      <div id="avgtat" style="color:rgb(0, 255, 255);"></div>
     </span>
-    <div  id="advdisfcfs" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: whitesmoke;">
-      <h2><b>Advantages:</b></h2>    
+    <div><h1 style="color:white">Explaination</h1></div>
+    <div  id="advdisfcfs" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white;">
+      <h2 style="color:white"><b>Advantages:</b></h2>    
       <p>
         <ul>
           <li>Simple and easy to implement: FCFS is a straightforward scheduling algorithm where processes are executed in the order they arrive, making it easy to understand and implement.</li>
@@ -607,7 +622,7 @@ display: block;
         </ul>
       </p>
     <br>
-    <h2><b>Disadvantages:</b></h2>    
+    <h2 style="color:white"><b>Disadvantages:</b></h2>    
       <p>
         <ul>
           <li>Poor response time: FCFS may lead to long waiting times for processes with higher burst times, resulting in poor response time and interactive performance.</li>  
@@ -616,8 +631,8 @@ display: block;
         </ul>
       </p>
   </div>
-  <div  id="advdisroundrobin" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: whitesmoke; display: none;">
-    <h2><b>Advantages:</b></h2>    
+  <div  id="advdisroundrobin" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white; display: none;">
+    <h2 style="color:white"><b>Advantages:</b></h2>    
     <p>
       <ul>
       <li>Fairness: Round Robin ensures fairness by providing equal opportunities for all processes to execute. Each process receives a fixed time slice called a time quantum, preventing any single process from monopolizing the CPU.
@@ -630,7 +645,7 @@ display: block;
       </ul>
     </p>
   <br>
-  <h2><b>Disadvantages:</b></h2>    
+  <h2 style="color:white"><b>Disadvantages:</b></h2>    
     <p>
       <ul>
         <li>Poor Performance for Long Processes: If a process requires a significantly longer time to complete than the time quantum, Round Robin can lead to poor performance. The overhead of frequent context switching between processes can degrade overall system performance.</li>
@@ -639,8 +654,8 @@ display: block;
       </ul>
     </p>
   </div>
-  <div  id="advdissjf" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: whitesmoke; display: none;">
-    <h2><b>Advantages:</b></h2>    
+  <div  id="advdissjf" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white; display: none;">
+    <h2 style="color:white"><b>Advantages:</b></h2>    
     <p>
       <ul>
       <li>Minimizes Waiting Time: SJF scheduling aims to minimize the average waiting time of processes by selecting the shortest job first. This approach ensures that shorter jobs are executed earlier, reducing the time other processes have to wait.</li>
@@ -651,7 +666,7 @@ display: block;
       </ul>
     </p>
   <br>
-  <h2><b>Disadvantages:</b></h2>    
+  <h2 style="color:white"><b>Disadvantages:</b></h2>    
     <p>
       <ul>
         <li>Starvation of Longer Jobs: SJF scheduling prioritizes shorter jobs, which can result in longer jobs experiencing starvation. If a series of short jobs continuously arrives, longer jobs may keep waiting indefinitely, leading to poor fairness in resource allocation.</li></ul>
@@ -660,8 +675,8 @@ display: block;
 
     </p>
   </div>
-  <div  id="advdispriority" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: whitesmoke; display: none;">
-    <h2><b>Advantages:</b></h2>    
+  <div  id="advdispriority" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white; display: none;">
+    <h2 style="color:white"><b>Advantages:</b></h2>    
     <p>
       <ul>
       <li>Efficient Resource Allocation: Priority CPU scheduling allows for the assignment of different priorities to processes based on their importance or urgency. This enables the CPU to allocate resources to high-priority processes first, ensuring critical tasks are completed promptly.</li>
@@ -672,7 +687,7 @@ display: block;
       </ul>
     </p>
   <br>
-  <h2><b>Disadvantages:</b></h2>    
+  <h2 style="color:white"><b>Disadvantages:</b></h2>    
     <p>
       <ul>
       <li>Possibility of Starvation: If processes with lower priorities are continually overshadowed by higher-priority processes, they may suffer from starvation, resulting in delayed execution or even deadlock. In extreme cases, low-priority processes may never get a chance to execute, leading to unfair resource distribution.</li> 

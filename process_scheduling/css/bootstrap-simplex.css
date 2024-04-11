@@ -3465,7 +3465,7 @@ tbody.collapse.in {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color:#FCBA28;
+  color:#FFFFFF;
   font-family: 'Outfit', sans-serif;
   font-weight: 550;
   font-size: small;
@@ -3474,8 +3474,8 @@ tbody.collapse.in {
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   text-decoration: none;
-  color: #0f0d0e;
-  background-color: #FCBA28;
+  color: #000000;
+  background-color: #00FEFE;
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
@@ -3483,7 +3483,7 @@ tbody.collapse.in {
   color: #0f0d0e;
   text-decoration: none;
   outline: 0;
-  background-color: #FCBA28;
+  background-color: #00FEFE;
 }
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,
