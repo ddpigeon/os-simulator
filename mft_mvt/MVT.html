@@ -1,51 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
 <nav>
-        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <a class="logo main-logo" href="../index.html" style="margin-left: 5%;"> OS VISUALIZER </a>
         <ul>
-            <li><button class="button button1">Home</button></li>
+            <li><button class="button button1" onclick="location.href = '../index.html';">Home</button></li>
             <li class="dropdown"><button class="button button1 dropbtn">Algorithms</button>
                 <div class="dropdown-content">
-                    <a href="#">Process Scheduling</a>
-                    <a href="#">Process Synchronization</a>
-                    <a href="#">Deadlock Detection</a>
-                    <a href="#">MFT and MVT</a>
-                    <a href="#">Paging and Page Replacement Algorithm</a>
-                    <a href="../Disk/disk.html">Disk Scheduling</a>
-                    <a href="#">File Allocation</a>
-                    <a href="#">Miscellaneous</a>
+                  <a href="../process_scheduling/process.html">Process Scheduling</a>
+                  <a href="../process_sync\home.html">Process Synchronization</a>
+                  <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+                  <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+                  <a href="../Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                  <a href="../Disk/disk.html">Disk Scheduling</a>
+                  <a href="../file allocation/file.html">File Allocation</a>
+                  <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
                     </div>
             </li>
-            <li><button class="button button1">About</button></li>
-            <li><button class="button button1">References</button></li>
+            <li><button class="button button1" onclick="location.href = '../about.html';">About</button></li>
+            <li><button class="button button1" onclick="location.href = '../references.html';">References</button></li>
         </ul>   
     </nav>
 	
-	<nav class="logo">
-	<h1>Memory Management - MVT (Multiple Variable-size Tasks)</h1>
+  <nav class="logo mt-5" style="max-width: 80%; margin-left: 10%;">
+	<h2>Memory Management - MVT (Multiple Variable-size Tasks)</h2>
 	</nav>
 	</nav>
 	
   
-
+  <div class="container">
   <label for="block-size">Enter the total size of memory:</label>
   <input type="number" id="block-size">
   <button onclick="createBlock()" class="button button1 dropbtn">Initialize Memory</button>
 
   <div id="block-container"></div>
 
-  <p style="color: #FCBA28;">Process Allocation:</p>
+  <p style="color: rgb(0, 254, 254);">Process Allocation:</p>
   
   <label for="process-size">Enter the size of the process:</label>
   <input type="number" id="process-size">
   <button onclick="allocateProcess()" class="button button1 dropbtn">Allocate Process</button>
 
   <div id="allocation-log"></div>
+
+</div>
 
   <script>
     var memoryBlocks = [];
