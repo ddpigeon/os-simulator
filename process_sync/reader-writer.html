@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readers-Writers Problem</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            color: white;
+            font-size: 20px;
+        }
+        nav {
+            background-color: #0f0d0e;
+            height: 90px;
+            display:flex;
+            justify-content:space-between;
+            background: rgba(10, 4, 4, 0);
+            position:relative;
+            align-items: center;
+        }
+        .logo {
+            border-radius: 12px;
+            margin: 15px;
+            margin-left: 4%;
+            padding: 10px 10px 10px 10px;
+            background: #231F20;
+            color: #f9f4da;
+            text-align: center;
+            font: 20px 'Outfit', sans-serif;
+            justify-content: center;
+            transition: 0.5s;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .logo:hover {
+            color: rgb(0, 0, 0);
+            background-color: rgb(0, 255, 255);
+        }
+        ul {
+            list-style: none;
+            margin-right: 4%;
+            padding: 0;
+            display:flex;
+            justify-content:right;
+            align-items: center;
+            height: 100%;
+        }
+        li {
+            margin: 0 20px;
+        }
+        a {
+            color: #28cefc;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight:bold;
+            text-transform: uppercase;
+        }
+        .button {
+            background-color: #f6fd0f;
+            color: #0f0d0e;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+        }
+        .button1 {
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+            border-radius: 5px;
+            border: 2px solid rgb(0, 255, 255);
+        }
+        .button1:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 135px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            background: rgba(2, 2, 0, 0.45);
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10.3px);
+            -webkit-backdrop-filter: blur(10.3px);
+        }
+        .dropdown-content a {
+            color: #FCBA28;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition-duration: 0.25s;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 550;
+            font-size: small;
+        }
+        .dropdown-content a:hover {
+            background-color:#FCBA28;
+            color: #0f0d0e;
+            border-radius: 5px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .logobutton{
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+            border-radius: 5px;
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+        }
+        .logobutton:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+        }
+        .left-container,
+        .right-container {
+            flex: 1;
+            margin-right: 20px;
+            height: 100%;
+            padding: 10px;
+            background-color: black;
+            text-align: center;
+            border: 2px solid rgb(0, 255, 255);
+        }
+        .simulator {
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .display {
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            overflow-y: auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 20px;
+            border: 1px solid black;
+            background-color: rgb(0,200,100);
+            font-weight: 700;
+        }
+        button:hover {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <ul>
+            <li><button onclick="location.href = '../index.html';" class="button button1">Home</button></li>
+            <li class="dropdown"><button class="button button1 dropbtn">Algorithms</button>
+              <div class="dropdown-content">
+                  <a href="../process_scheduling/process.html">Process Scheduling</a>
+                  <a href="../process_sync\home.html">Process Synchronization</a>
+                  <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+                  <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+                  <a href="../Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                  <a href="../Disk/disk.html">Disk Scheduling</a>
+                  <a href="../file allocation/file.html">File Allocation</a>
+                  <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
+              </div>
+            </li>
+            <li><button class="button button1">About</button></li>
+            <li><button class="button button1">References</button></li>
+        </ul>        
+    </nav>
+    <div class="container">
+        <div class="left-container">
+            <div class="simulator">
+                <h2>Readers-Writers Simulation</h2>
+                <p>The Reader-Writer problem deals with multiple processes accessing a shared resource, where some processes (readers) only read the resource and others (writers) both read and write to it. Synchronization techniques such as reader-writer locks are employed to allow concurrent read access by multiple readers while ensuring exclusive write access to prevent data inconsistency.</p>
+                <button onclick="startSimulation()">Start Simulation</button>
+                <button onclick="resetSimulation()">Reset Simulation</button>
+                <button onclick="exitSimulation()">Exit Simulation</button>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="display">
+                <div id="output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let readerCount = 0;
+        let writerCount = 0;
+        let isWriting = false;
+        let isSimulationRunning = false;
+        let outputElement = document.getElementById('output');
+        let simulationInterval;
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function simulateReader() {
+            while (isWriting || writerCount > 0) {
+                await sleep(1000); // Wait if a writer is active
+            }
+
+            readerCount++;
+            outputElement.innerHTML += `<p>${readerCount} reader(s) inside</p>`;
+            await sleep(3000); // Simulate reading
+            readerCount--;
+            outputElement.innerHTML += `<p>${readerCount} reader(s) left</p>`;
+        }
+
+        async function simulateWriter() {
+            while (readerCount > 0 || writerCount > 0) {
+                await sleep(1000);
+            }
+            writerCount++;
+            isWriting = true;
+            outputElement.innerHTML += `<p>Writer is writing...</p>`;
+            await sleep(3000);
+            writerCount--;
+            isWriting = false;
+            outputElement.innerHTML += `<p>Writer has finished writing</p>`;
+        }
+
+        async function startSimulation() {
+            if (!isSimulationRunning) {
+                isSimulationRunning = true;
+                outputElement.innerHTML = '';
+                const numReaders = parseInt(prompt('Enter the number of readers:', '5'), 10);
+                const numWriters = parseInt(prompt('Enter the number of writers:', '1'), 10);
+
+                simulationInterval = setInterval(async () => {
+                    // Generate a random number of readers to simulate
+                    const readersToSimulate = Math.floor(Math.random() * numReaders) + 1;
+                    const actualReadersToSimulate = Math.min(readersToSimulate, numReaders - readerCount);
+
+                    for (let i = 0; i < actualReadersToSimulate; i++) {
+                        await simulateReader(); // Wait for each reader simulation to complete
+                    }
+
+                    if (readerCount < numReaders) {
+                        const remainingReaders = numReaders - readerCount;
+                        const actualWritersToSimulate = Math.min(numWriters, remainingReaders);
+
+                        for (let j = 0; j < actualWritersToSimulate; j++) {
+                            await simulateWriter(); // Wait for each writer simulation to complete
+                        }
+                    } else {
+                        clearInterval(simulationInterval); // Stop simulation if all readers have been simulated
+                        isSimulationRunning = false;
+                    }
+                }, 5000); // Run the simulation loop every 5 seconds
+            }
+        }
+
+
+
+        function resetSimulation() {
+            readerCount = 0;
+            writerCount = 0;
+            isWriting = false;
+            outputElement.innerHTML = '';
+            clearInterval(simulationInterval);
+            isSimulationRunning = false;
+        }
+
+        function exitSimulation() {
+            if (confirm('Do you want to exit the simulation?')) {
+                clearInterval(simulationInterval);
+                isSimulationRunning = false;
+                outputElement.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>

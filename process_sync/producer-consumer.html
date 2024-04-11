@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer-Consumer Problem</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+        }
+        nav {
+            background-color: #0f0d0e;
+            height: 90px;
+            display:flex;
+            justify-content:space-between;
+            background: rgba(10, 4, 4, 0);
+            position:relative;
+            align-items: center;
+        }
+        .logo {
+            border-radius: 12px;
+            margin: 15px;
+            margin-left: 4%;
+            padding: 10px 10px 10px 10px;
+            background: #231F20;
+            color: #f9f4da;
+            text-align: center;
+            font: 20px 'Outfit', sans-serif;
+            justify-content: center;
+            transition: 0.5s;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .logo:hover {
+            color: rgb(0, 0, 0);
+            background-color: rgb(0, 255, 255);
+        }
+        ul {
+            list-style: none;
+            margin-right: 4%;
+            padding: 0;
+            display:flex;
+            justify-content:right;
+            align-items: center;
+            height: 100%;
+        }
+        li {
+            margin: 0 20px;
+        }
+        a {
+            color: #28cefc;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight:bold;
+            text-transform: uppercase;
+        }
+        .button {
+            background-color: #f6fd0f;
+            color: #0f0d0e;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+        }
+        .button1 {
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+            border-radius: 5px;
+            border: 2px solid rgb(0, 255, 255);
+        }
+        .button1:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 135px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            background: rgba(2, 2, 0, 0.45);
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10.3px);
+            -webkit-backdrop-filter: blur(10.3px);
+        }
+        .dropdown-content a {
+            color: #FCBA28;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition-duration: 0.25s;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 550;
+            font-size: small;
+        }
+        .dropdown-content a:hover {
+            background-color:#FCBA28;
+            color: #0f0d0e;
+            border-radius: 5px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .logobutton{
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+            border-radius: 5px;
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+        }
+        .logobutton:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .container {
+            padding: 5%;
+            justify-content: center;
+            border: 1px solid rgb(0, 255, 255);
+            text-align: center;
+            border-radius: 15px;
+        }
+        .simulator {
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+        .output {
+            text-align: left;
+        }
+        .buffer {
+            display: flex;
+            justify-content: center;
+            width: 300px;
+            height: 70px;
+            border: 1px solid rgb(0, 255, 255);
+        }
+
+        .buffer div {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgb(0, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 13px 5px;
+            cursor: pointer;
+        }
+
+        .controls {
+            margin-top: 30px;
+        }
+
+        button {
+            font-weight: 700;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid black;
+            background-color: rgb(0,250,50);
+            border-radius: 20px;
+        }
+        button:hover {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <ul>
+            <li><button onclick="location.href = '../index.html';" class="button button1">Home</button></li>
+            <li class="dropdown"><button class="button button1 dropbtn">Algorithms</button>
+              <div class="dropdown-content">
+                  <a href="../process_scheduling/process.html">Process Scheduling</a>
+                  <a href="../process_sync\home.html">Process Synchronization</a>
+                  <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+                  <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+                  <a href="../Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                  <a href="../Disk/disk.html">Disk Scheduling</a>
+                  <a href="../file allocation/file.html">File Allocation</a>
+                  <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
+              </div>
+            </li>
+            <li><button class="button button1">About</button></li>
+            <li><button class="button button1">References</button></li>
+        </ul>        
+    </nav>
+    <div class="container">
+        <div class="simulator">
+            <h1>Producer Consumer Problem</h1>
+            <p>The Producer-Consumer problem involves coordination between processes where producers produce data and place it into a shared buffer, while consumers retrieve and consume this data. Synchronization mechanisms like semaphores or mutexes are used to prevent race conditions, ensuring that producers do not overflow the buffer and consumers do not access an empty buffer.</p>
+        </div>
+        <div class="output">
+            <div class="buffer" id="buffer">
+                <!-- Buffer slots will be dynamically filled -->
+            </div>
+            <div class="controls">
+                <button onclick="addItem()">Add</button>
+                <button onclick="removeItem()">Remove</button>
+                <button onclick="resetBuffer()">Reset Buffer</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        const BUFFER_SIZE = 5;
+        let buffer = new Array(BUFFER_SIZE).fill(null);
+
+        function updateBufferView() {
+            const bufferDiv = document.getElementById('buffer');
+            bufferDiv.innerHTML = '';
+
+            for (let i = 0; i < BUFFER_SIZE; i++) {
+                const slotValue = buffer[i] !== null ? buffer[i] : '-';
+                const slotColor = buffer[i] !== null ? 'lightgreen' : 'white';
+                const slotHTML = `<div style="background-color: ${slotColor}" onclick="selectSlot(${i})">${slotValue}</div>`;
+                bufferDiv.innerHTML += slotHTML;
+            }
+        }
+
+        function addItem() {
+            const newItem = prompt('Enter item to add:');
+            if (newItem !== null && newItem !== '') {
+                const emptyIndex = buffer.indexOf(null);
+                if (emptyIndex !== -1) {
+                    buffer[emptyIndex] = newItem;
+                    updateBufferView();
+                } else {
+                    alert('Buffer is full! Remove an item first.');
+                }
+            }
+        }
+
+        function removeItem() {
+            const selectedIndex = parseInt(prompt('Enter index of item to remove (0-4):'), 10);
+            if (!isNaN(selectedIndex) && selectedIndex >= 0 && selectedIndex < BUFFER_SIZE) {
+                if (buffer[selectedIndex] !== null) {
+                    buffer[selectedIndex] = null;
+                    updateBufferView();
+                } else {
+                    alert('No item at this index!');
+                }
+            } else {
+                alert('Invalid index. Please enter a number between 0 and 4.');
+            }
+        }
+
+        function resetBuffer() {
+            buffer = new Array(BUFFER_SIZE).fill(null);
+            updateBufferView();
+        }
+
+        function selectSlot(index) {
+            const selectedValue = buffer[index];
+            if (selectedValue !== null) {
+                alert(`Selected item: ${selectedValue}`);
+            }
+        }
+        updateBufferView();
+    </script>
+</body>
+</html>

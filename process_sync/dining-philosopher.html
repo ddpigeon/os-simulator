@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dining Philosopher Problem</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            color: white;
+            font-size: 20px;
+        }
+        nav {
+            background-color: #0f0d0e;
+            height: 90px;
+            display:flex;
+            justify-content:space-between;
+            background: rgba(10, 4, 4, 0);
+            position:relative;
+            align-items: center;
+        }
+        .logo {
+            border-radius: 12px;
+            margin: 15px;
+            margin-left: 4%;
+            padding: 10px 10px 10px 10px;
+            background: #231F20;
+            color: #f9f4da;
+            text-align: center;
+            font: 20px 'Outfit', sans-serif;
+            justify-content: center;
+            transition: 0.5s;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .logo:hover {
+            color: rgb(0, 0, 0);
+            background-color: rgb(0, 255, 255);
+        }
+        ul {
+            list-style: none;
+            margin-right: 4%;
+            padding: 0;
+            display:flex;
+            justify-content:right;
+            align-items: center;
+            height: 100%;
+        }
+        li {
+            margin: 0 20px;
+        }
+        a {
+            color: #28cefc;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight:bold;
+            text-transform: uppercase;
+        }
+        .button {
+            background-color: #f6fd0f;
+            color: #0f0d0e;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+        }
+        .button1 {
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+            border-radius: 5px;
+            border: 2px solid rgb(0, 255, 255);
+        }
+        .button1:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 135px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            background: rgba(2, 2, 0, 0.45);
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10.3px);
+            -webkit-backdrop-filter: blur(10.3px);
+        }
+        .dropdown-content a {
+            color: #FCBA28;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition-duration: 0.25s;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 550;
+            font-size: small;
+        }
+        .dropdown-content a:hover {
+            background-color:#FCBA28;
+            color: #0f0d0e;
+            border-radius: 5px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .logobutton{
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+            border-radius: 5px;
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+        }
+        .logobutton:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            height: 80%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .left-container {
+            width: 50%;
+            padding: 25px;
+            box-sizing: border-box;
+            text-align: justify;
+            border: 1px solid rgb(0, 255, 255);
+            margin-right: 20px;
+            border-radius: 20px;
+        }
+        .right-container {
+            max-height: 100%;
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 1px solid rgb(0, 255, 255);
+            border-radius: 20px;
+        }
+    
+        h1 {
+            text-align: center;
+        }
+    
+        .left-container input {
+            height: 25px;
+        }
+
+        .left-container button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            font-weight: 700;
+            border: none;
+            border-radius: 25px;
+        }
+    
+        .left-container button:hover {
+            background-color: rgb(0,200,100);
+        }
+    
+        .philosopher {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+        }
+        .plate {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: orange;
+            align-items: center;
+            color: black;
+            font-weight: 700;
+            margin: 10px auto;
+        }
+        .fork {
+            width: 30px;
+            height: 5px;
+            background-color: white;
+            color: orange;
+            margin: 10px auto;
+        }
+    
+        #table {
+            max-height: 40%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            overflow-y: scroll;
+        }
+    
+        #output {
+            margin-bottom: 5px;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            max-height: 60%;
+            overflow-y: scroll;
+        }
+    </style>       
+</head>
+<body>
+    <nav>
+        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <ul>
+            <li><button onclick="location.href = '../index.html';" class="button button1">Home</button></li>
+            <li class="dropdown"><button class="button button1 dropbtn">Algorithms</button>
+              <div class="dropdown-content">
+                  <a href="../process_scheduling/process.html">Process Scheduling</a>
+                  <a href="../process_sync\home.html">Process Synchronization</a>
+                  <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+                  <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+                  <a href="../Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                  <a href="../Disk/disk.html">Disk Scheduling</a>
+                  <a href="../file allocation/file.html">File Allocation</a>
+                  <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
+              </div>
+            </li>
+            <li><button class="button button1">About</button></li>
+            <li><button class="button button1">References</button></li>
+        </ul>        
+    </nav>
+    <div class="container">
+        <div class="left-container">
+            <h1>Dining Philosopher Problem</h1>
+            <p>The Dining Philosophers problem is a synchronization challenge in which a group of philosophers sit around a dining table with forks between them. Each philosopher needs two forks to eat, and the problem arises when all philosophers attempt to pick up the forks simultaneously, leading to a deadlock. Techniques like semaphores or mutexes are used to manage access to the forks and prevent deadlocks, ensuring that philosophers can eat without causing conflicts.</p>
+            <label for="num-philosophers">Number of Philosophers:</label>
+            <input type="number" id="num-philosophers" min="2" value="5">
+            <button id="start-simulation">Start Simulation</button>
+            <button id="pause-simulation" style="display: none;">Pause Simulation</button>
+            <button id="resume-simulation" style="display: none;">Resume Simulation</button>
+        </div>
+        <div class="right-container">
+            <div id="table"></div>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+    <script>
+        const THINKING = 2;
+        const HUNGRY = 1;
+        const EATING = 0;
+
+        let N;
+        let state = [];
+        let philosophers = [];
+        let forks = [];
+        let mutex = new Semaphore(1);
+        let semaphores = [];
+        let simulationRunning = false;
+        let simulationPaused = false;
+        let simulationStartTime;
+        let simulationDuration = 10000; // 10 seconds
+
+        function Semaphore(value) {
+            this.value = value;
+            this.queue = [];
+        }
+
+        Semaphore.prototype.wait = function () {
+            return new Promise((resolve) => {
+                if (this.value > 0) {
+                    this.value--;
+                    resolve();
+                } else {
+                    this.queue.push(resolve);
+                }
+            });
+        };
+
+        Semaphore.prototype.signal = function () {
+            if (this.queue.length > 0) {
+                const resolve = this.queue.shift();
+                resolve();
+            } else {
+                this.value++;
+            }
+        };
+
+        function Philosopher(id) {
+            this.id = id;
+            this.state = THINKING;
+            this.leftFork = null;
+            this.rightFork = null;
+        }
+
+        Philosopher.prototype.test = async function (phnum) {
+            const LEFT = (phnum + 4) % N;
+            const RIGHT = (phnum + 1) % N;
+
+            if (this.state === HUNGRY && state[LEFT] !== EATING && state[RIGHT] !== EATING) {
+                this.state = EATING;
+                await sleep(2000);
+                log(`Philosopher ${this.id + 1} takes fork ${LEFT + 1} and ${this.id + 1}`);
+                log(`Philosopher ${this.id + 1} is Eating`);
+                semaphores[this.id].signal();
+            }
+        };
+
+        Philosopher.prototype.takeFork = async function () {
+            await mutex.wait();
+            this.state = HUNGRY;
+            log(`Philosopher ${this.id + 1} is Hungry`);
+            await this.test(this.id);
+            mutex.signal();
+            await semaphores[this.id].wait();
+            await sleep(1000);
+        };
+
+        Philosopher.prototype.putFork = async function () {
+            await mutex.wait();
+            this.state = THINKING;
+            const LEFT = (this.id + 4) % N;
+            const RIGHT = (this.id + 1) % N;
+            log(`Philosopher ${this.id + 1} putting fork ${LEFT + 1} and ${this.id + 1} down`);
+            log(`Philosopher ${this.id + 1} is thinking`);
+            await this.test(LEFT);
+            await this.test(RIGHT);
+            mutex.signal();
+        };
+
+        async function philosopher(num) {
+            while (simulationRunning) {
+                if (!simulationPaused && Date.now() - simulationStartTime < simulationDuration) {
+                    await philosophers[num].takeFork();
+                    await philosophers[num].putFork();
+                } else {
+                    await semaphores[num].wait();
+                }
+            }
+        }
+
+        function createPhilosopher(id) {
+            const philosopher = new Philosopher(id);
+            const philosopherDiv = document.createElement("div");
+            philosopherDiv.className = "philosopher";
+
+            const plate = document.createElement("div");
+            plate.className = "plate";
+            plate.textContent = `P${id + 1}`;
+
+            const leftForkDiv = document.createElement("div");
+            leftForkDiv.className = "fork";
+
+            const rightForkDiv = document.createElement("div");
+            rightForkDiv.className = "fork";
+
+            philosopherDiv.appendChild(plate);
+            philosopherDiv.appendChild(leftForkDiv);
+            philosopherDiv.appendChild(rightForkDiv);
+
+            document.getElementById("table").appendChild(philosopherDiv);
+
+            return philosopher;
+        }
+
+        function sleep(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        function log(message) {
+            const output = document.getElementById("output");
+            output.textContent += `${message}\n`;
+            output.scrollTop = output.scrollHeight; // Scroll to bottom
+        }
+
+        function clearTable() {
+            document.getElementById("table").innerHTML = "";
+            document.getElementById("output").textContent = "";
+        }
+
+        function init() {
+            clearTable();
+
+            simulationRunning = true;
+            simulationPaused = false;
+            simulationStartTime = Date.now();
+
+            N = parseInt(document.getElementById("num-philosophers").value, 10);
+            if (isNaN(N) || N < 2) {
+                alert("Please enter a valid number of philosophers (2 or more).");
+                return;
+            }
+
+            state = new Array(N).fill(THINKING);
+            philosophers = new Array(N);
+            forks = new Array(N);
+            semaphores = new Array(N);
+
+            for (let i = 0; i < N; i++) {
+                const philosopher = createPhilosopher(i);
+                philosophers[i] = philosopher;
+            }
+
+            for (let i = 0; i < N; i++) {
+                forks[i] = {}; // Placeholder for forks
+            }
+
+            for (let i = 0; i < N; i++) {
+                const philosopher = philosophers[i];
+                philosopher.leftFork = forks[i];
+                philosopher.rightFork = forks[(i + 1) % N];
+                semaphores[i] = new Semaphore(0);
+            }
+
+            for (let i = 0; i < N; i++) {
+                philosopher(i);
+                log(`Philosopher ${i + 1} is thinking`);
+            }
+        }
+
+        function pauseSimulation() {
+            simulationPaused = true;
+            document.getElementById("start-simulation").style.display = "inline-block";
+            document.getElementById("pause-simulation").style.display = "none";
+            document.getElementById("resume-simulation").style.display = "inline-block";
+        }
+
+        function resumeSimulation() {
+            simulationPaused = false;
+            document.getElementById("start-simulation").style.display = "none";
+            document.getElementById("pause-simulation").style.display = "inline-block";
+            document.getElementById("resume-simulation").style.display = "none";
+            for (let i = 0; i < N; i++) {
+                semaphores[i].signal();
+            }
+        }
+
+        document.getElementById("start-simulation").addEventListener("click", init);
+        document.getElementById("pause-simulation").addEventListener("click", pauseSimulation);
+        document.getElementById("resume-simulation").addEventListener("click", resumeSimulation);
+    </script>
+</body>
+</html>
