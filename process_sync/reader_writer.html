@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readers-Writers Problem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: row; /* Display side by side */
+            width: 100%;
+            height: 100%;
+        }
+        .left-container,
+        .right-container {
+            flex: 1;
+            height: 100%;
+            padding: 10px;
+        }
+        .simulator {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .display {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 100%; /* Cover the entire height */
+            overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="left-container">
+        <div class="simulator">
+            <h2>Readers-Writers Simulation</h2>
+            <button onclick="startSimulation()">Start Simulation</button>
+            <button onclick="resetSimulation()">Reset Simulation</button>
+            <button onclick="exitSimulation()">Exit Simulation</button>
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="display">
+            <div id="output"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let readerCount = 0;
+    let writerCount = 0;
+    let isWriting = false;
+    let isSimulationRunning = false;
+    let outputElement = document.getElementById('output');
+    let simulationInterval;
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function simulateReader() {
+        while (isWriting || writerCount > 0) {
+            await sleep(1000); // Wait if a writer is active
+        }
+
+        readerCount++;
+        outputElement.innerHTML += `<p>${readerCount} reader(s) inside</p>`;
+        await sleep(3000); // Simulate reading
+        readerCount--;
+        outputElement.innerHTML += `<p>${readerCount} reader(s) left</p>`;
+    }
+
+    async function simulateWriter() {
+        while (readerCount > 0 || writerCount > 0) {
+            await sleep(1000); // Wait if readers or another writer is active
+        }
+
+        writerCount++;
+        isWriting = true;
+        outputElement.innerHTML += `<p>Writer is writing...</p>`;
+        await sleep(3000); // Simulate writing
+        writerCount--;
+        isWriting = false;
+        outputElement.innerHTML += `<p>Writer has finished writing</p>`;
+    }
+
+    async function startSimulation() {
+        if (!isSimulationRunning) {
+            isSimulationRunning = true;
+            outputElement.innerHTML = ''; // Clear previous output
+            const numReaders = parseInt(prompt('Enter the number of readers:', '5'), 10);
+            const numWriters = parseInt(prompt('Enter the number of writers:', '1'), 10);
+
+            simulationInterval = setInterval(async () => {
+                // Generate a random number of readers to simulate
+                const readersToSimulate = Math.floor(Math.random() * numReaders) + 1;
+                const actualReadersToSimulate = Math.min(readersToSimulate, numReaders - readerCount);
+
+                for (let i = 0; i < actualReadersToSimulate; i++) {
+                    await simulateReader(); // Wait for each reader simulation to complete
+                }
+
+                if (readerCount < numReaders) {
+                    const remainingReaders = numReaders - readerCount;
+                    const actualWritersToSimulate = Math.min(numWriters, remainingReaders);
+
+                    for (let j = 0; j < actualWritersToSimulate; j++) {
+                        await simulateWriter(); // Wait for each writer simulation to complete
+                    }
+                } else {
+                    clearInterval(simulationInterval); // Stop simulation if all readers have been simulated
+                    isSimulationRunning = false;
+                }
+            }, 5000); // Run the simulation loop every 5 seconds
+        }
+    }
+
+
+
+    function resetSimulation() {
+        readerCount = 0;
+        writerCount = 0;
+        isWriting = false;
+        outputElement.innerHTML = '';
+        clearInterval(simulationInterval);
+        isSimulationRunning = false;
+    }
+
+    function exitSimulation() {
+        if (confirm('Do you want to exit the simulation?')) {
+            clearInterval(simulationInterval);
+            isSimulationRunning = false;
+            outputElement.innerHTML = '';
+        }
+    }
+</script>
+
+</body>
+</html>
