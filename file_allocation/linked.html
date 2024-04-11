@@ -10,9 +10,30 @@
 </head>
 
 <body onload="initialise()" style="background-color: black;">
+
+	<nav>
+		<ul>
+		  <li><button onclick="location.href = '../index.html';" class="button button3">Home</button></li>
+		  <li class="dropdown"><button class="button button3 dropbtn">Algorithms</button>
+			<div class="dropdown-content">
+			  <a href="../process_scheduling/process.html">Process Scheduling</a>
+			  <a href="../process_sync\home.html">Process Synchronization</a>
+			  <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+			  <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+			  <a href="../page_replacement/page_replacement_home.html">Page Replacement Algorithm</a>
+			  <a href="../Disk/disk.html">Disk Scheduling</a>
+			  <a href="../file_allocation/file.html">File Allocation</a>
+			  <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
+			</div>
+		  </li>
+		  <li><button class="button button3" onclick="location.href = '../about.html';">About</button></li>
+		  <li><button class="button button3" onclick="location.href = '../references.html';">References</button></li>
+		</ul>
+	  </nav>
+
 	<div class="container" style="background-color: black;">
 	</br>
-		<div class="jumbotron" style="background-color: #fcba28;">
+		<div class="jumbotron" style="background-color: rgb(0, 254, 254);">
 		<h1>LINKED ALLOCATION</h1>
 	<p > Enter the total number of Files </p>
 		<input id="nof" type="number">
@@ -22,9 +43,9 @@
 		<!-- =======================input fields =================================-->
 		<form class="s_hide">
 				<h4> First File </h4>
-			STARTING BLOCK:	<input id="file_no" type="number" placeholder="Starting Block">
-			SIZE OF THE FILE:	 <input type="number" placeholder="Enter the Size of File">
-			SIZE OF THE BLOCK: <input type="number" placeholder="Enter the Size of block">
+			STARTING BLOCK:	<input id="file_no" type="number"><br><br>
+			SIZE OF THE FILE:	 <input type="number"><br><br>
+			SIZE OF THE BLOCK: <input type="number"><br><br>
 			<div class="anchor" onclick="inside_form(0)">
 				<a >NEXT</a>
 			</div align="left">
@@ -52,9 +73,9 @@
 
 		<form class="s_hide">
 				<h4> Second File </h4>
-			STARTING BLOCK:	<input  id="file_no" type="number">
-			SIZE OF THE FILE:	 <input type="number">
-			SIZE OF THE BLOCK: <input type="number">
+			STARTING BLOCK:	<input  id="file_no" type="number"> <br><br>
+			SIZE OF THE FILE:	 <input type="number"><br><br>
+			SIZE OF THE BLOCK: <input type="number"><br><br>
 			<div class="anchor" onclick="inside_form(1)">
 				<a >NEXT</a>
 			</div>
@@ -82,9 +103,9 @@
 
 		<form class="s_hide">
 				<h4> Third File </h4>
-			STARTING BLOCK:	<input  id="file_no" type="number">
-			SIZE OF THE FILE:	 <input type="number">
-			SIZE OF THE BLOCK: <input type="number">
+			STARTING BLOCK:	<input  id="file_no" type="number"><br><br>
+			SIZE OF THE FILE:	 <input type="number"><br><br>
+			SIZE OF THE BLOCK: <input type="number"><br><br>
 			<div class="anchor">
 				<a onclick="inside_form(2)">NEXT</a>
 			</div>
@@ -112,9 +133,9 @@
 
 		<form class="s_hide">
 				<h4> Fourth File </h4>
-			STARTING BLOCK:	<input  id="file_no" type="number">
-			SIZE OF THE FILE:	 <input type="number">
-			SIZE OF THE BLOCK: <input type="number">
+			STARTING BLOCK:	<input  id="file_no" type="number"><br><br>
+			SIZE OF THE FILE:	 <input type="number"><br><br>
+			SIZE OF THE BLOCK: <input type="number"><br><br>
 			<div class="anchor">
 				<a onclick="inside_form(3)">NEXT</a>
 			</div>
@@ -141,9 +162,9 @@
 
 			<form class="s_hide">
 				<h4> Fifth File </h4>
-				STARTING BLOCK::	<input  id="file_no" type="number">
-				SIZE OF THE FILE:	 <input type="number">
-				SIZE OF THE BLOCK: <input type="number">
+				STARTING BLOCK::	<input  id="file_no" type="number"><br><br>
+				SIZE OF THE FILE:	 <input type="number"><br><br>
+				SIZE OF THE BLOCK: <input type="number"><br><br>
 			<div class="anchor">
 				<a onclick="inside_form(4)">NEXT</a>
 			</div>
@@ -170,9 +191,9 @@
 
 			<form class="s_hide">
 				<h4>Sixth File </h4>
-				STARTING BLOCK::	<input  id="file_no" type="number">
-				SIZE OF THE FILE:	 <input type="number">
-				SIZE OF THE BLOCK: <input type="number">
+				STARTING BLOCK::	<input  id="file_no" type="number"><br><br>
+				SIZE OF THE FILE:	 <input type="number"><br><br>
+				SIZE OF THE BLOCK: <input type="number"><br><br>
 			<div class="anchor">
 				<a onclick="inside_form(5)">NEXT</a>
 			</div>
@@ -199,9 +220,9 @@
 
 			<form class="s_hide">
 				<h4> Seventh File </h4>
-				STARTING BLOCK:	<input  id="file_no" type="number">
-				SIZE OF THE FILE:	 <input type="number">
-				SIZE OF THE BLOCK: <input type="number">
+				STARTING BLOCK:	<input  id="file_no" type="number"><br><br>
+				SIZE OF THE FILE:	 <input type="number"><br><br>
+				SIZE OF THE BLOCK: <input type="number"><br><br>
 			<div class="anchor">
 				<a onclick="inside_form(6)">NEXT</a>
 			</div>
@@ -228,9 +249,9 @@
 
 			<form class="s_hide">
 				<h4> Eight File </h4>
-				STARTING BLOCK:	<input  id="file_no" type="number">
-				SIZE OF THE FILE:	 <input type="number">
-				SIZE OF THE BLOCK: <input type="number">
+				STARTING BLOCK:	<input  id="file_no" type="number"><br><br>
+				SIZE OF THE FILE:	 <input type="number"><br><br>
+				SIZE OF THE BLOCK: <input type="number"><br><br>
 			<div class="anchor">
 				<a onclick="inside_form(7)">NEXT</a>
 			</div>
@@ -267,7 +288,6 @@
 		<p class="out"></p>
 
 	</div>
-	<button class="back"><a href="../home.html" style="text-decoration: none;">Back</a></button>
 </div>
 	</div>
 
