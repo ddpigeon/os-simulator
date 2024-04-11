@@ -1,2 +1,3 @@
-OS SIMULATOR DEMONSTRATING VARIOUS ALGORITHMS
-https://praveenkumar2003.github.io/OS-Lab-Project/
+# OS simulator project.
+
+Demonstrates various OS related algorithms like process/disk scheduling, deadlock avoidance, page replacement, fragmentation algorithms etc.
