@@ -95,7 +95,7 @@
         position: relative;
     }
 
-    .logo {
+    .main-logo, .logo {
       border-radius: 12px;
       margin: 15px;
       margin-left: 4%;
@@ -111,7 +111,7 @@
 
     }
 
-    .logo:hover {
+    .main-logo:hover {
       color: rgb(0, 0, 0);
       background-color: rgb(0, 255, 255);
       text-decoration: none; 
@@ -188,7 +188,6 @@
     }
 
     .fun {
-        padding-top: 23vh;
         width: 100vw;
     }
 
@@ -197,7 +196,7 @@
 <body class="body_name">
     <!-- Navigation Bar -->
     <nav>
-        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <a class="main-logo" href="../index.html"> OS VISUALIZER </a>
         <ul>
             <li><button onclick="location.href = '../index.html';" class="button button1">Home</button></li>
             <li class="dropdown"><button class="button button1 dropbtn">Algorithms</button>
@@ -206,14 +205,14 @@
                     <a href="../process_sync\home.html">Process Synchronization</a>
                     <a href="../Bankers/bankers.html">Bankers Algorithm</a>
                     <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
-                    <a href="../Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                    <a href="../page_replacement/page_replacement_home.html">Page Replacement Algorithm</a>
                     <a href="../Disk/disk.html">Disk Scheduling</a>
-                    <a href="../file allocation/file.html">File Allocation</a>
+                    <a href="../file_allocation/file.html">File Allocation</a>
                     <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
                 </div>
             </li>
             <li><button class="button button1" onclick="location.href = '../about.html';">About</button></li>
-            <li><button class="button button1">References</button></li>
+            <li><button class="button button1" onclick="location.href = '../references.html';">References</button></li>
         </ul>
         </ul>
         </div>
@@ -247,10 +246,12 @@
 
         </div>
 
-        <div class="container-fluid">
+        <nav class="logo mt-5" style="max-width: 80%; margin-left: 10%;">
+            <h1>Disk Scheduling</h1>
+        </nav>
+        <div class="container-fluid container">
             <div class="row">
                 <div class="jumbotron fun" style="background-color:#0f0f0f">
-                    <h1 style="color:white" class="display-3" font color="black"><strong>Disk Scheduling</strong></h1>
                     <p style="color:white" class="lead">Disk scheduling is the method that computer operating systems
                         use to decide in which order the block I/O operations will be submitted to storage volumes. I/O
                         scheduling is sometimes called disk scheduling.</p>
@@ -382,3 +383,4 @@
 </body>
 
 </html>
+
