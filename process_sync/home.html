@@ -1,1 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Synchronization</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            color: white;
+            font-size: 20px;
+        }
+        nav {
+            background-color: #0f0d0e;
+            height: 90px;
+            display:flex;
+            justify-content:space-between;
+            background: rgba(10, 4, 4, 0);
+            position:relative;
+            align-items: center;
+        }
+        .logo {
+            border-radius: 12px;
+            margin: 15px;
+            margin-left: 4%;
+            padding: 10px 10px 10px 10px;
+            background: #231F20;
+            color: #f9f4da;
+            text-align: center;
+            font: 20px 'Outfit', sans-serif;
+            justify-content: center;
+            transition: 0.5s;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .logo:hover {
+            color: rgb(0, 0, 0);
+            background-color: rgb(0, 255, 255);
+        }
+        ul {
+            list-style: none;
+            margin-right: 4%;
+            padding: 0;
+            display:flex;
+            justify-content:right;
+            align-items: center;
+            height: 100%;
+        }
+        li {
+            margin: 0 20px;
+        }
+        a {
+            color: #28cefc;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight:bold;
+            text-transform: uppercase;
+        }
+        .button {
+            background-color: #f6fd0f;
+            color: #0f0d0e;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+        }
+        .button1 {
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+            border-radius: 5px;
+            border: 2px solid rgb(0, 255, 255);
+        }
+        .button1:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 135px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            background: rgba(2, 2, 0, 0.45);
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10.3px);
+            -webkit-backdrop-filter: blur(10.3px);
+        }
+        .dropdown-content a {
+            color: #FCBA28;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition-duration: 0.25s;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 550;
+            font-size: small;
+        }
+        .dropdown-content a:hover {
+            background-color:#FCBA28;
+            color: #0f0d0e;
+            border-radius: 5px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .logobutton{
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+            border-radius: 5px;
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+        }
+        .logobutton:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .about {
+            padding: 1% 3%;
+            border: 1px solid;
+            border-radius: 15px;
+            border-color: rgb(0, 255, 255);
+        }
+        .about h1 {
+            margin-bottom: 20px;
+        }
+        .about p {
+            text-align: justify;
+        }
+        .about ul {
+            list-style: circle;
+            display: block;
+            margin: 3px;
+        }
+        .about li {
+            margin-bottom: 3px;
+        }
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+            align-items: center;
+        }
+        .button-container button {
+            padding: 20px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            font-weight: 700;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            transition: background-color 0.3s;
+            border-radius: 25px;
+        }
+        .button-container button:hover {
+            background-color: rgb(0,250,100);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <ul>
+            <li><button onclick="location.href = '../index.html';" class="button button1">Home</button></li>
+            <li class="dropdown"><button class="button button1 dropbtn">Algorithms</button>
+              <div class="dropdown-content">
+                  <a href="../process_scheduling/process.html">Process Scheduling</a>
+                  <a href="../process_sync\home.html">Process Synchronization</a>
+                  <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+                  <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+                  <a href="../Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                  <a href="../Disk/disk.html">Disk Scheduling</a>
+                  <a href="../file allocation/file.html">File Allocation</a>
+                  <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
+              </div>
+            </li>
+            <li><button class="button button1">About</button></li>
+            <li><button class="button button1">References</button></li>
+        </ul>        
+    </nav>
+    <div class="about">
+        <h1>Process Synchronization</h1>
+        <p>
+            Process synchronization is a vital aspect of managing multiple processes in a system to ensure they access shared resources without conflicts or data inconsistencies. The primary goal is to prevent race conditions, where concurrent access to resources by processes can lead to unpredictable outcomes. Techniques like semaphores, monitors, and critical sections are employed to coordinate process execution, allowing controlled access to shared resources and avoiding issues like data corruption.
+        </p>
+        <p>
+            In modern operating systems, effective process synchronization is essential for maintaining data integrity and system stability in multi-process environments. By implementing synchronization mechanisms, such as mutual exclusion and deadlock prevention, processes can coordinate their actions efficiently, ensuring that shared resources are accessed in a controlled and orderly manner. Understanding and implementing these synchronization techniques are fundamental for designing robust and reliable concurrent systems.
+        </p>
+        <h3>Advantages of Process Synchronization:</h3>
+        <ul>
+            <li>Ensures data consistency and integrity</li>
+            <li>Avoids race conditions</li>
+            <li>Prevents inconsistent data due to concurrent access</li>
+            <li>Supports efficient and effective use of shared resources</li>
+        </ul>
 
+        <h3>Disadvantages of Process Synchronization:</h3>
+        <ul>
+            <li>Adds overhead to the system</li>
+            <li>This can lead to performance degradation</li>
+            <li>Increases the complexity of the system</li>
+            <li>Can cause deadlocks if not implemented properly</li>
+        </ul>
+    </div>
+    <div class="button-container">
+        <button onclick="redirectTo('/producer-consumer.html')">Producer-Consumer</button>
+        <button onclick="redirectTo('/reader-writer.html')">Reader-Writer</button>
+        <button onclick="redirectTo('/dining-philosopher.html')">Dining Philosophers</button>
+    </div>
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>
