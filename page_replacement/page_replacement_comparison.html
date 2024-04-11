@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,12 +10,214 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <style>
+
     * {
         box-sizing: border-box;
-        border-color:#fcba28;
+        border-color:#00FEFE;
     }
     body{
         background-color: #0f0d0e;
+    }
+
+    .body_name{
+        background-color: #0f0f0f;
+    }
+
+    .column1 {
+        float: left;
+        width: 30%;
+        padding: 15px;
+        margin: 10px;
+        background-color: #00FEFE;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .column1:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+    .column1 h2 {
+        color: black; /* Adjust text color */
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .column1 p {
+        color: black; /* Adjust text color */
+        margin: 0;
+    }
+
+
+
+    .butn {
+        margin-top: 2.2%;
+        height: 41px;
+        color: rgb(0, 254, 254);
+        background-color: #0f0d0e;
+        border: 3px solid rgb(0, 254, 254); 
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .row1 {
+        padding-right: 15px;
+        height: 24vh;
+        margin-bottom: 0%;
+    }
+
+    .body_name {
+        background-color: #0f0f0f;
+    }
+
+
+
+    .button {
+        background-color: rgb(0, 254, 254);
+        color: #0f0d0e;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        transition-duration: 0.5s;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 550;
+    }
+
+    .button1 {
+        background-color: #0f0d0e;
+        color: white;
+        border-radius: 5px;
+        border: 2px solid rgb(0, 254, 254);
+    }
+
+    .button1:hover {
+        background-color: rgb(0, 254, 254);
+        color: #0f0d0e;
+    }
+
+    nav {
+        background-color: #0f0d0e;
+        height: 90px;
+        display: flex;
+        justify-content: space-between;
+        background: rgba(10, 4, 4, 0);
+        position: relative;
+    }
+
+    .logo {
+        border-radius: 12px;
+        margin: 15px;
+        margin-left: 4%;
+        padding: 18px 10px 2px 10px;
+        background: #231F20;
+        color: #f9f4da;
+        text-align: center;
+        font: 20px 'Outfit', sans-serif;
+        justify-content: center;
+        transition: 0.5s;
+        font-weight: bolder;
+        cursor: pointer;
+
+    }
+
+    .logo:hover {
+        color: rgb(0, 0, 0);
+        background-color: rgb(0, 255, 255);
+        text-decoration: none; 
+    }
+
+    .butn:hover {
+        color: rgb(0, 0, 0);
+        background-color: rgb(0, 255, 255);
+        text-decoration: none; 
+    }
+
+
+
+    ul {
+        list-style: none;
+        margin-right: 4%;
+        padding: 0;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        height: 100%;
+    }
+
+    li {
+        margin: 0 20px;
+
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    a:hover {
+        color: #00FEFE;
+        text-decoration: none;
+    }
+
+
+
+    /* dropdown*/
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 135px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        background: rgba(2, 2, 0, 0.45);
+        border-radius: 5px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10.3px);
+        -webkit-backdrop-filter: blur(10.3px);
+
+    }
+
+    .dropdown-content a {
+        color: rgb(0, 254, 254);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border: none;
+        cursor: pointer;
+        transition-duration: 0.25s;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 550;
+        font-size: small;
+
+    }
+
+    .dropdown-content a:hover {
+        background-color: rgb(0, 254, 254);
+        color: #0f0d0e;
+        border-radius: 5px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .fun {
+        color: white;
+        padding-bottom: 23vh;
+        width: 100vw;
+        text-align: center;
     }
 
     .flex-container {
@@ -40,62 +241,83 @@
         justify-content: center;
         align-items: center;
         margin-top: 3rem;
-    }
-    #tbl1{
-        color: #FCBA28;
-    }
-    #tbl2{
-        color: #FCBA28;
-    }
-    #tbl3{
-        color: #FCBA28;
-    }
-    #tbl4{
-        color: #FCBA28;
-    }
-    #tbl5{
-        color: #FCBA28;
-    }
 
-    .first {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #0f0d0e;
-        color: #fcba28;
-    }
+        #tbl1{
+            color: #00FEFE;
+        }
+        #tbl2{
+            color: #00FEFE;
+        }
+        #tbl3{
+            color: #00FEFE;
+        }
+        #tbl4{
+            color: #00FEFE;
+        }
+        #tbl5{
+            color: #00FEFE;
+        }
 
-    .second {
+        .first {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #0f0d0e;
+            color: #00FEFE;
+        }
 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 20px;
-        background-color: #030507;
-        color: #fcba28;
-    }
+        .second {
 
-    .frmBtn {
-        width: 200px;
-        margin: 10px;
-    }
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            background-color: #030507;
+            color: #00FEFE;
+        }
 
-    .summary {
-        background-color: #040608;
+        .frmBtn {
+            width: 200px;
+            margin: 10px;
+        }
 
-    }
+        .summary {
+            background-color: #040608;
 
-    .table-bordered td,
-    .table-bordered th,
-    .table-bordered tr {
-        border-color: black !important;
-        border-width: 2px;
-    }
+        }
+
+        .table-bordered td,
+        .table-bordered th,
+        .table-bordered tr {
+            border-color: black !important;
+            border-width: 2px;
+        }
 </style>
 
 <body>
+    <nav>
+        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <ul>
+            <li><button onclick="location.href = '../index.html';" class="button button1">Home</button></li>
+            <li class="dropdown">
+                <button class="button button1 dropbtn">Algorithms</button>
+                <div class="dropdown-content">
+                    <a href="../process_scheduling/process.html">Process Scheduling</a>
+                    <a href="../process_sync\home.html">Process Synchronization</a>
+                    <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+                    <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+                    <a href="../page_replacement/page_replacement_home.html">Page Replacement Algorithm</a>
+                    <a href="../Disk/disk.html">Disk Scheduling</a>
+                    <a href="../file_allocation/file.html">File Allocation</a>
+                    <a href="../mft_mvt/MVFT.html">MFT and MVT</a>
+                </div>
+            </li>
+            <li><button class="button button1" onclick="location.href = '../about.html';">About</button></li>
+            <li><button class="button button1" onclick="location.href = '../references.html';">References</button></li>
+        </ul>
+    </nav>
     <div class="container">
         <div class="first card border border-dark">
             <div class="heading">
@@ -109,13 +331,13 @@
             <div class="frame-size">
                 <input id="frame_size" placeholder="" type="number" name="frame" min="1" required>
             </div>
-            <div class="button">
+            <div class="button button1">
                 <input id="btn1" type="button" onclick="disableButton1(); showDiv();  visualize();"
-                    class="frmBtn btn btn-lg btn-block btn-success" value="COMPARE">
+                                               class="frmBtn btn btn-lg btn-block btn-success" value="COMPARE">
             </div>
-            <div class="button">
+            <div class="button button1">
                 <input id="btn2" style="background-color: #ff0000;" type="button" onclick="enableButton1(); reset();"
-                    class="frmBtn btn btn-lg btn-block btn-danger" value="RESET">
+                                                                                  class="frmBtn btn btn-lg btn-block btn-danger" value="RESET">
             </div>
         </div>
         <div class="second" id="SUM" style="display:none;">
@@ -584,7 +806,7 @@
             document.getElementById("miss_rate3").innerHTML = "Page Miss Rate : " + `<b>${missRate.toFixed(2)}%</b>`;
             document.getElementById("hit_rate3").innerHTML = "Page Hit Rate : " + `<b>${hitRate.toFixed(2)}%</b>`;
 
-            
+
         }
         function MRU() {
 
@@ -700,7 +922,7 @@
             document.getElementById("miss_rate5").innerHTML = "Page Miss Rate : " + `<b>${missRate.toFixed(2)}%</b>`;
             document.getElementById("hit_rate5").innerHTML = "Page Hit Rate : " + `<b>${hitRate.toFixed(2)}%</b>`;
 
-            
+
         }
 
 
