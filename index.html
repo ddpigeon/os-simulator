@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My First HTML Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+
+    <style>
+        .column1 {
+            width: calc(42% - 25px);
+            padding: 20px;
+            margin: 30px;
+            background-color: #FCBA28;
+            color: black;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a class="logo" href="index.html"> OS VISUALIZER </a>
+        <ul>
+            <li><button class="button button1">Home</button></li>
+            <a class="button button1" href="about.html">About</a>
+            <li><button class="button button1">References</button></li>
+        </ul>
+    </nav>
+    <!-- <div class ="container">
+        <img src="land.jpeg" style="width: 500px;"> 
+    </div> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="column1" style="background-color:#FCBA28">
+                <a style="color:black" href="process_scheduling/process.html">Process Scheduling</a>
+                <p style="color:black">Algo1</p>
+            </div>
+            <div class="column1" style="background-color:#FCBA28">
+                <a style="color:black" href="process_sync\home.html">Process Synchronization</a>
+                <p style="color:black">Algo2</p>
+            </div> 
+            <div class="column1" style="background-color:#FCBA28">
+                <a style="color:black" href="Bankers/bankers.html">Bankers Algorithm</a>
+                <p style="color:black">Algo3</p>
+            </div>
+            <div class="column1" style="background-color:#FCBA28">
+                <a style="color:black" href="mft_mvt/Fit.html"> Fit Algorithms</a>
+                <p style="color: black">Algo4</p>
+            </div>
+            <div class="column1" style="background-color:#FCBA28">
+                <a style="color:black" href="Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                <p style="color:black">Algo5</p>
+            </div>
+            <div class="column1" style="background-color:#FCBA28">
+                <a style="color:black" href="Disk/disk.html">Disk Scheduling</a>
+                <p style="color: black">Algo6</p>
+            </div>
+            <div class="column1" style="background-color:#FCBA28">
+                <a style="color:black" href="file allocation/file.html">File Allocation</a>
+                <p style="color: black">Algo7</p>
+            </div>
+            <div class="column1" style="background-color:#FCBA28">
+                <a style="color:black" href="mft_mvt\MVFT.html">MFT and MVT</a>
+                <p style="color: black">Algo8</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+
+</html>
