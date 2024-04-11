@@ -2,26 +2,52 @@
 <html>
 
 <head>
-    <title>My First HTML Page</title>
+    <title>OS Algorithms</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
-
     <style>
-        .column1 {
-            width: calc(42% - 25px);
+        .card {
+            width: 200px;
+            height: 200px;
             padding: 20px;
-            margin: 30px;
-            background-color: #FCBA28;
-            color: black;
+            margin: 20px;
+            background-color: #5c5c5c;
+            color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgb(0, 255, 255);
+        }
+
+        .card a {
+            color: #00fefe;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 0;
         }
 
         .row {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center;
         }
+
+ 
     </style>
 </head>
 
@@ -34,48 +60,49 @@
             <li><button class="button button1">References</button></li>
         </ul>
     </nav>
-    <!-- <div class ="container">
-        <img src="land.jpeg" style="width: 500px;"> 
-    </div> -->
+
     <div class="container-fluid">
         <div class="row">
-            <div class="column1" style="background-color:#FCBA28">
-                <a style="color:black" href="process_scheduling/process.html">Process Scheduling</a>
-                <p style="color:black">Algo1</p>
+            <div class="card">
+                <a href="process_scheduling/process.html">Process Scheduling</a>
+                <p>Algo1</p>
             </div>
-            <div class="column1" style="background-color:#FCBA28">
-                <a style="color:black" href="process_sync\home.html">Process Synchronization</a>
-                <p style="color:black">Algo2</p>
-            </div> 
-            <div class="column1" style="background-color:#FCBA28">
-                <a style="color:black" href="Bankers/bankers.html">Bankers Algorithm</a>
-                <p style="color:black">Algo3</p>
+            <div class="card">
+                <a href="process_sync\home.html">Process Synchronization</a>
+                <p>Algo2</p>
             </div>
-            <div class="column1" style="background-color:#FCBA28">
-                <a style="color:black" href="mft_mvt/Fit.html"> Fit Algorithms</a>
-                <p style="color: black">Algo4</p>
+            <div class="card">
+                <a href="Bankers/bankers.html">Bankers Algorithm</a>
+                <p>Algo3</p>
             </div>
-            <div class="column1" style="background-color:#FCBA28">
-                <a style="color:black" href="Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
-                <p style="color:black">Algo5</p>
+            <div class="card">
+                <a href="mft_mvt/Fit.html">Fit Algorithms</a>
+                <p>Algo4</p>
             </div>
-            <div class="column1" style="background-color:#FCBA28">
-                <a style="color:black" href="Disk/disk.html">Disk Scheduling</a>
-                <p style="color: black">Algo6</p>
+        </div>
+        <div class="row">
+            <div class="card">
+                <a href="Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                <p>Algo5</p>
             </div>
-            <div class="column1" style="background-color:#FCBA28">
-                <a style="color:black" href="file allocation/file.html">File Allocation</a>
-                <p style="color: black">Algo7</p>
+            <div class="card">
+                <a href="Disk/disk.html">Disk Scheduling</a>
+                <p>Algo6</p>
             </div>
-            <div class="column1" style="background-color:#FCBA28">
-                <a style="color:black" href="mft_mvt\MVFT.html">MFT and MVT</a>
-                <p style="color: black">Algo8</p>
+            <div class="card">
+                <a href="file allocation/file.html">File Allocation</a>
+                <p>Algo7</p>
+            </div>
+            <div class="card">
+                <a href="mft_mvt\MVFT.html">MFT and MVT</a>
+                <p>Algo8</p>
             </div>
         </div>
     </div>
+    <div class="Robot">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.93/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/hiAaaV5HYHkRByqu/scene.splinecode"></spline-viewer>
     </div>
-
-
 </body>
 
 </html>
