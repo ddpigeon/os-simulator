@@ -3439,7 +3439,7 @@ tbody.collapse.in {
   list-style: none;
   font-size: 13px;
   text-align: left;
-  background-color: #ffffff;
+  background-color: rgba(2, 2, 0, 0.45);
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
@@ -3447,6 +3447,7 @@ tbody.collapse.in {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
+  backdrop-filter: blur(12px);
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -3464,22 +3465,25 @@ tbody.collapse.in {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #444444;
+  color:#FCBA28;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 550;
+  font-size: small;
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   text-decoration: none;
-  color: #ffffff;
-  background-color: #d9230f;
+  color: #0f0d0e;
+  background-color: #FCBA28;
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
-  color: #ffffff;
+  color: #0f0d0e;
   text-decoration: none;
   outline: 0;
-  background-color: #d9230f;
+  background-color: #FCBA28;
 }
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,
