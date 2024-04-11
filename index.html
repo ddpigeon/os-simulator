@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>OS Algorithms</title>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -41,16 +40,18 @@
             margin: 0;
         }
 
+        .card p1 {
+            margin: 0;
+            color: #00fefe;
+        }
+
         .row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
-
- 
     </style>
 </head>
-
 <body>
     <nav>
         <a class="logo" href="index.html"> OS VISUALIZER </a>
@@ -60,43 +61,58 @@
             <li><button class="button button1">References</button></li>
         </ul>
     </nav>
-
     <div class="container-fluid">
         <div class="row">
-            <div class="card">
-                <a href="process_scheduling/process.html">Process Scheduling</a>
-                <p>Algo1</p>
-            </div>
-            <div class="card">
-                <a href="process_sync\home.html">Process Synchronization</a>
-                <p>Algo2</p>
-            </div>
-            <div class="card">
-                <a href="Bankers/bankers.html">Bankers Algorithm</a>
-                <p>Algo3</p>
-            </div>
-            <div class="card">
-                <a href="mft_mvt/Fit.html">Fit Algorithms</a>
-                <p>Algo4</p>
-            </div>
+            <a href="process_scheduling/process.html">
+                <div class="card">
+                    <p1>Process Scheduling</p1>
+                    <p>Algo1</p>
+                </div>
+            </a>
+            <a href="process_sync\home.html">
+                <div class="card">
+                    <p1>Process Synchronization</p1>
+                    <p>Algo2</p>
+                </div>
+            </a>
+            <a href="Bankers/bankers.html">
+                <div class="card">
+                    <p1>Bankers Algorithm</p1>
+                    <p>Algo3</p>
+                </div>
+            </a>
+            <a href="mft_mvt/Fit.html">
+                <div class="card">
+                    <p1>Fit Algorithms</p1>
+                    <p>Algo4</p>
+                </div>
+            </a>
         </div>
         <div class="row">
-            <div class="card">
-                <a href="Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
-                <p>Algo5</p>
-            </div>
-            <div class="card">
-                <a href="Disk/disk.html">Disk Scheduling</a>
-                <p>Algo6</p>
-            </div>
-            <div class="card">
-                <a href="file allocation/file.html">File Allocation</a>
-                <p>Algo7</p>
-            </div>
-            <div class="card">
-                <a href="mft_mvt\MVFT.html">MFT and MVT</a>
-                <p>Algo8</p>
-            </div>
+            <a href="Page_Replacement Algo/page replacement_home.html">
+                <div class="card">
+                    <p1>Page Replacement Algorithm</p1>
+                    <p>Algo5</p>
+                </div>
+            </a>
+            <a href="Disk/disk.html">
+                <div class="card">
+                    <p1>Disk Scheduling</p1>
+                    <p>Algo6</p>
+                </div>
+            </a>
+            <a href="file allocation/file.html">
+                <div class="card">
+                    <p1>File Allocation</p1>
+                    <p>Algo7</p>
+                </div>
+            </a>
+            <a href="mft_mvt\MVFT.html">
+                <div class="card">
+                    <p1>MFT and MVT</p1>
+                    <p>Algo8</p>
+                </div>
+            </a>
         </div>
     </div>
     <div class="Robot">
@@ -104,5 +120,4 @@
         <spline-viewer url="https://prod.spline.design/hiAaaV5HYHkRByqu/scene.splinecode"></spline-viewer>
     </div>
 </body>
-
 </html>

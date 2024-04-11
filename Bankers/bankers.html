@@ -58,9 +58,6 @@
       margin-bottom: 10px;
       margin-left: 50px;
       margin-right: 50px;
-      border: #f6fd0f;
-      border-width: 2px;
-      border-radius: 10px;
     }
 
     label {
@@ -221,7 +218,12 @@
     }
 
     .userinput {
-      padding-left: 50px;
+      /* padding-left: 50px; */
+      border-radius: 10px;
+    }
+
+    .optionp{
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -271,15 +273,15 @@
     <tbody>
       <tr>
         <td>P0</td>
-        <td><input type="number" min="0"></td>
-        <td><input type="number" min="0"></td>
-        <td><input type="number" min="0"></td>
+        <td><input type="number" min="0" class="userinput"></td>
+        <td><input type="number" min="0" class="userinput"></td>
+        <td><input type="number" min="0" class="userinput"></td>
       </tr>
       <tr>
         <td>P1</td>
-        <td><input type="number" min="0"></td>
-        <td><input type="number" min="0"></td>
-        <td><input type="number" min="0"></td>
+        <td><input type="number" min="0" class="userinput"></td>
+        <td><input type="number" min="0" class="userinput"></td>
+        <td><input type="number" min="0" class="userinput"></td>
       </tr>
       <!-- Add more rows for additional processes -->
     </tbody>
@@ -287,7 +289,7 @@
 
   <div class="input-container">
     <label for="request-process">Request Resource for Process:</label>
-    <select id="request-process">
+    <select id="request-process" class="optionp">
       <option value="P0">P0</option>
       <option value="P1">P1</option>
       <!-- Add more options for additional processes -->
@@ -296,7 +298,7 @@
 
   <div class="input-container">
     <label for="request">Resource Request:</label>
-    <input type="text" id="request" placeholder="e.g., 3 2 4">
+    <input type="text" id="request" placeholder="e.g., 3 2 4" class="userinput">
   </div>
 
   <button id="simulate-button">Simulate</button>
