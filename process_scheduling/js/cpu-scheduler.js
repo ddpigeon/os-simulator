@@ -275,6 +275,7 @@ $(document).ready(function () {
 		this.burstTime = burstTime;
 		this.initialBurst = burstTime;
 		this.arrivalTime = arrivalTime;
+		this.deadline = arrivalTime + burstTime;
 		this.done = false;
 		this.hasStarted = false;
 		this.finishTime;
@@ -670,6 +671,49 @@ $(document).ready(function () {
 		}
 	}
 
+	function EDF() {
+		// Sort processes by arrival time
+		sortArriveTimes();
+	
+		let position = 0;
+	
+		while (!isDone(processArray)) {
+			//fillGaps();
+	
+			let nextProcessIndex = findEarliestDeadlineIndex(processArray, position);
+	
+			if (nextProcessIndex !== -1) {
+				let nextProcess = processArray[nextProcessIndex];
+				if (nextProcess.arrivalTime > position) {
+					bar.addItem("idle", nextProcess.arrivalTime - position);
+					position = nextProcess.arrivalTime;
+				}
+				bar.addItem(nextProcess.processName, nextProcess.burstTime);
+				nextProcess.finished();
+				position += nextProcess.burstTime;
+			}
+		}
+	}
+	
+	function isDone(processArray) {
+		return processArray.every(process => process.done);
+	}
+	
+	function findEarliestDeadlineIndex(processArray, position) {
+		let earliestDeadlineIndex = -1;
+		let earliestDeadline = Infinity;
+	
+		for (let i = 0; i < processArray.length; i++) {
+			if (!processArray[i].done && processArray[i].arrivalTime <= position && processArray[i].deadline < earliestDeadline) {
+				earliestDeadline = processArray[i].deadline;
+				earliestDeadlineIndex = i;
+			}
+		}
+	
+		return earliestDeadlineIndex;
+	}
+	
+
 
 	function run() {
 		loadValues();
@@ -693,10 +737,26 @@ $(document).ready(function () {
 				document.getElementById("advdissjf").style.display = "none";
 				document.getElementById("advdispriority").style.display = "none";
 				document.getElementById("advdissrjf").style.display = "none";
+				document.getElementById("advdisedf").style.display = "none";
 
 				FCFS();
 				processTotal = processArray;
 			}
+
+			if (algorithm == "EDF") {
+				$("#algorithm_explanation").text("Executes processes with earliest deadline first.");
+				document.getElementById("advdisroundrobin").style.display = "none";
+				document.getElementById("advdisfcfs").style.display = "none";
+				document.getElementById("advdissjf").style.display = "none";
+				document.getElementById("advdispriority").style.display = "none";
+				document.getElementById("advdissrjf").style.display = "none";
+				document.getElementById("advdisedf").style.display = "block";
+
+				EDF();
+				processTotal = processArray;
+			}
+
+
 
 			else if (algorithm == "SJF") {
 				$("#algorithm_explanation").text("Shortest Job First will execute proccesses from smallest to biggest");
@@ -705,18 +765,21 @@ $(document).ready(function () {
 				document.getElementById("advdissjf").style.display = "block";
 				document.getElementById("advdispriority").style.display = "none";
 				document.getElementById("advdissrjf").style.display = "none";
+				document.getElementById("advdisedf").style.display = "none";
 
 				SJF();
 				processTotal = processArray;
 			}
 
 			else if (algorithm == "SRJF") {
+				$("#algorithm_explanation").text("This is a pre-emptive variation of SJF which swaps in processes with shortest remaining time.");
 				SRJF();
 				document.getElementById("advdisroundrobin").style.display = "none";
 				document.getElementById("advdisfcfs").style.display = "none";
 				document.getElementById("advdissjf").style.display = "none";
 				document.getElementById("advdispriority").style.display = "none";
                 document.getElementById("advdissrjf").style.display = "block";
+				document.getElementById("advdisedf").style.display = "none";
 
 				$("#algorithm_explanation").text("Shortest Remaining Job First will execute proccesses from smallest to biggest. If a new proccess arrives that is smaller than the currently running proccess, it will interrupt it.");
 				processTotal = processArray;
@@ -729,6 +792,7 @@ $(document).ready(function () {
 				document.getElementById("advdissjf").style.display = "none";
 				document.getElementById("advdispriority").style.display = "none";
 				document.getElementById("advdissrjf").style.display = "none";
+				document.getElementById("advdisedf").style.display = "none";
 
 				roundRobin();
 				processTotal = processArray;
@@ -745,6 +809,7 @@ $(document).ready(function () {
 				document.getElementById("advdissjf").style.display = "none";
 				document.getElementById("advdispriority").style.display = "block";
 				document.getElementById("advdissrjf").style.display = "none";
+				document.getElementById("advdisedf").style.display = "none";
 
 				priority();
 				processTotal = processArray;

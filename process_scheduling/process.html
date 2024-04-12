@@ -440,6 +440,7 @@ display: block;
               <li><a calcStyle="Round Robin" id="fast_calc" class="linkk">Round Robin</a></li>
               <li><a calcStyle="Priority" id="fast_calc" class="linkk">Priority</a></li>
               <li><a calcStyle="SRJF" id="fast_calc" class="linkk"> Shortest Remaining Job first</a></li>
+              <li><a calcStyle="EDF" id="fast_calc" class="linkk"> Earliest deadline first</a></li>
             </ul>
           </div>
 
@@ -705,6 +706,7 @@ display: block;
       </ul>
     </p>
   </div>
+
   <div  id="advdissrjf" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(0, 0, 0); color: white; display: none;">
     <h2 style="color: #00FEFE"><b>Advantages:</b></h2>    
     <p>
@@ -725,6 +727,34 @@ display: block;
         <li>Increased overhead due to frequent context switching, impacting system performance.</li>
 
     </p>
+  </div>
+
+
+    <div  id="advdisedf" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(0, 0, 0); color: white; display: none;">
+      <h2 style="color: #00FEFE"><b>Advantages:</b></h2>    
+      <p>
+        <ul>
+          <li>Maximizes system throughput by dynamically prioritizing tasks with the earliest deadlines, ensuring timely completion of critical jobs.</li>
+          <li>Adaptable to varying workload intensities and task requirements, enhancing system responsiveness in dynamic environments.</li>
+          <li>Optimizes resource utilization by minimizing the average response time and maximizing CPU utilization, leading to efficient system performance.</li>
+  
+        </li>
+        </ul>
+      </p>
+    <br>
+    <h2 style="color: #00FEFE"><b>Disadvantages:</b></h2>    
+      <p>
+        <ul>
+          <li>May lead to increased context switching and overhead due to frequent preemptions, potentially impacting system efficiency and performance.</li>
+          <li>Requires accurate estimation and prediction of task deadlines, which can be challenging and prone to errors in real-world applications.</li>
+          <li>Potential risk of deadline misses for tasks with tight deadlines, especially under high system loads or in scenarios with unpredictable task behavior.</li>
+  
+      </p>
+      </div>
+
+
+
+
     <!-- <button style="background-color: #FCBA28;color: #000000;" id="explanation">Show Explanation</button> -->
   
 
