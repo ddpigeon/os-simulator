@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paging Simulation</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            color: white;
+            font-size: 20px;
+        }
+        nav {
+            background-color: #0f0d0e;
+            height: 90px;
+            display:flex;
+            justify-content:space-between;
+            background: rgba(10, 4, 4, 0);
+            position:relative;
+            align-items: center;
+        }
+        .logo {
+            border-radius: 12px;
+            margin: 15px;
+            margin-left: 4%;
+            padding: 10px 10px 10px 10px;
+            background: #231F20;
+            color: #f9f4da;
+            text-align: center;
+            font: 20px 'Outfit', sans-serif;
+            justify-content: center;
+            transition: 0.5s;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .logo:hover {
+            color: rgb(0, 0, 0);
+            background-color: rgb(0, 255, 255);
+        }
+        ul {
+            list-style: none;
+            margin-right: 4%;
+            padding: 0;
+            display:flex;
+            justify-content:right;
+            align-items: center;
+            height: 100%;
+        }
+        li {
+            margin: 0 20px;
+        }
+        a {
+            color: #28cefc;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight:bold;
+            text-transform: uppercase;
+        }
+        .button {
+            background-color: #f6fd0f;
+            color: #0f0d0e;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+        }
+        .button1 {
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+            border-radius: 5px;
+            border: 2px solid rgb(0, 255, 255);
+        }
+        .button1:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 135px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            background: rgba(2, 2, 0, 0.45);
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10.3px);
+            -webkit-backdrop-filter: blur(10.3px);
+        }
+        .dropdown-content a {
+            color: #FCBA28;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition-duration: 0.25s;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 550;
+            font-size: small;
+        }
+        .dropdown-content a:hover {
+            background-color:#FCBA28;
+            color: #0f0d0e;
+            border-radius: 5px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .logobutton{
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+            border-radius: 5px;
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+        }
+        .logobutton:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+
+        .container {
+            border: 1px solid rgb(0,255,255);
+            max-width: 800px;
+            margin: 10px 25%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container h1 {
+            text-align: center;
+        }
+
+        .memory {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 20px;
+        }
+
+        .frame-container, .page-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .frame, .page {
+            width: 60px;
+            height: 50px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+
+        .controls {
+            margin-top: 30px;
+        }
+
+        .controls label {
+            margin-right: 10px;
+            font-weight: 700;
+        }
+
+        .controls select {
+            text-align: center;
+            width: 100px;
+            height: 30px;
+        }
+
+        .controls button {
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 0px 10px;
+            float: right;
+            text-align: center;
+            width: 170px;
+            height: 40px;
+            justify-content: space-evenly;
+            font-size: 16px;
+            font-weight: 70px;
+        }
+
+        .controls button:hover {
+            background-color: rgb(0,200,0);
+        }
+
+        .page-table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .page-table th, .page-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <ul>
+            <li><button onclick="location.href = '../index.html';" class="button button1">Home</button></li>
+            <li class="dropdown"><button class="button button1 dropbtn">Algorithms</button>
+              <div class="dropdown-content">
+                  <a href="../process_scheduling/process.html">Process Scheduling</a>
+                  <a href="../process_sync\home.html">Process Synchronization</a>
+                  <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+                  <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+                  <a href="../Page_Replacement Algo/page replacement_home.html">Page Replacement Algorithm</a>
+                  <a href="../Disk/disk.html">Disk Scheduling</a>
+                  <a href="../file allocation/file.html">File Allocation</a>
+                  <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
+              </div>
+            </li>
+            <li><button class="button button1">About</button></li>
+            <li><button class="button button1">References</button></li>
+        </ul>        
+    </nav>
+    <div class="container">
+        <h1>Demand - Paging Simulation</h1>
+        <div class="memory">
+            <div class="frames">
+                <h2>Memory Frames</h2>
+                <div class="frame-container" id="frame-container"></div>
+            </div>
+
+            <div class="pages">
+                <h2>Pages</h2>
+                <div class="page-container" id="page-container"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <label for="page-select">Access Page:</label>
+            <select id="page-select"></select>
+            <button onclick="accessSelectedPage()">Access Selected Page</button>
+            <button onclick="resetSimulation()">Reset Simulation</button>
+        </div>
+
+        <table class="page-table" id="page-table">
+            <caption>Page Table</caption>
+            <thead>
+            <tr>
+                <th>Page Number</th>
+                <th>Frame Number</th>
+            </tr>
+            </thead>
+            <tbody id="page-table-body"></tbody>
+        </table>
+    </div>
+
+<script>
+    // Constants
+    const NUM_FRAMES = 4;
+    const NUM_PAGES = 8;
+
+    // Memory simulation variables
+    let frames = [];
+    let pages = [];
+    let pageTable = {};
+    let nextVictimFrame = 0; // Track the next frame to be replaced in FIFO order
+
+    // Initialize memory simulation
+    function initializeSimulation() {
+        // Create frames
+        for (let i = 0; i < NUM_FRAMES; i++) {
+            frames.push(null); // Initially empty
+            const frameElement = createMemoryElement('frame', i);
+            document.getElementById('frame-container').appendChild(frameElement);
+        }
+
+        // Create pages and populate page selection dropdown
+        const pageSelect = document.getElementById('page-select');
+        for (let i = 0; i < NUM_PAGES; i++) {
+            pages.push(i);
+            const pageElement = createMemoryElement('page', i);
+            document.getElementById('page-container').appendChild(pageElement);
+
+            // Populate page selection dropdown
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `Page ${i}`;
+            pageSelect.appendChild(option);
+        }
+
+        // Initialize page table
+        const pageTableBody = document.getElementById('page-table-body');
+        for (let i = 0; i < NUM_PAGES; i++) {
+            pageTable[i] = null; // Initially not in memory
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${i}</td>
+                <td>Not in Memory</td>
+            `;
+            pageTableBody.appendChild(row);
+        }
+    }
+
+    // Helper function to create frame or page element
+    function createMemoryElement(type, index) {
+        const element = document.createElement('div');
+        element.className = `${type}`;
+        element.id = `${type}-${index}`;
+        element.textContent = type === 'frame' ? `Frame ${index}` : `Page ${index}`;
+        return element;
+    }
+
+    // Simulate accessing the selected page
+    function accessSelectedPage() {
+        const selectedPageNumber = parseInt(document.getElementById('page-select').value);
+
+        if (!isNaN(selectedPageNumber) && selectedPageNumber >= 0 && selectedPageNumber < NUM_PAGES) {
+            const pageNumber = selectedPageNumber;
+
+            if (pageTable[pageNumber] !== null) {
+                // Page is already in memory (hit)
+                highlightMemoryAccess(pageNumber, 'green');
+            } else {
+                // Page fault (page is not in memory)
+                const victimFrame = findVictimFrame(); // Find the victim frame for replacement
+                const existingPage = frames[victimFrame]; // Get the existing page in the victim frame
+
+                // Update page table to remove the existing page from the frame
+                if (existingPage !== null) {
+                    pageTable[existingPage] = null;
+                    updatePageTable(existingPage, null); // Update page table to show the page is not in memory
+                }
+
+                // Update page table with the new page in the victim frame
+                pageTable[pageNumber] = victimFrame;
+                frames[victimFrame] = pageNumber;
+                updatePageTable(pageNumber, victimFrame); // Update page table to show the new page in the frame
+
+                highlightMemoryAccess(pageNumber, 'red'); // Highlight the memory access (page fault)
+            }
+        } else {
+            alert('Please select a valid page.');
+        }
+    }
+
+    // Helper function to update page table
+    function updatePageTable(pageNumber, frameNumber) {
+        const pageTableRow = document.getElementById(`page-table-body`).rows[pageNumber];
+        if (frameNumber !== null) {
+            pageTableRow.cells[1].textContent = `Frame ${frameNumber}`;
+        } else {
+            pageTableRow.cells[1].textContent = `Not in Memory`;
+        }
+    }
+
+
+    // Helper function to find a victim frame for page replacement (FIFO)
+    function findVictimFrame() {
+        const victimFrame = nextVictimFrame;
+        nextVictimFrame = (nextVictimFrame + 1) % NUM_FRAMES; // Move to the next frame in a circular manner
+        return victimFrame;
+    }
+
+    // Helper function to highlight memory access
+    function highlightMemoryAccess(pageNumber, color) {
+        const pageElement = document.getElementById(`page-${pageNumber}`);
+        pageElement.style.backgroundColor = color;
+
+        setTimeout(() => {
+            pageElement.style.backgroundColor = '';
+        }, 1000);
+    }
+
+    // Reset simulation
+    function resetSimulation() {
+        // Reset memory
+        frames = [];
+        pages = [];
+        pageTable = {};
+        nextVictimFrame = 0; // Reset the next victim frame tracker
+
+        // Clear HTML elements
+        document.getElementById('frame-container').innerHTML = '';
+        document.getElementById('page-container').innerHTML = '';
+        document.getElementById('page-table-body').innerHTML = '';
+
+        // Reinitialize simulation
+        initializeSimulation();
+    }
+
+    // Initialize simulation on page load
+    window.onload = initializeSimulation;
+
+</script>
+</body>
+</html>
