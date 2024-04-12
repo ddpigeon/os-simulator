@@ -285,17 +285,21 @@
             if (state[phnum] === HUNGRY && state[LEFT(phnum)] !== EATING && state[RIGHT(phnum)] !== EATING) {
                 state[phnum] = EATING;
                 self.postMessage({ philosopherId: phnum + 1, action: 'is Eating' });
+                log(`Philosopher ${phnum + 1} takes fork ${LEFT(phnum) + 1} and ${phnum + 1}`);
                 log(`Philosopher ${phnum + 1} eats`);
 
                 // Simulate eating for 2 seconds
                 setTimeout(() => {
                     state[phnum] = THINKING;
                     self.postMessage({ philosopherId: phnum + 1, action: 'is Thinking' });
-                    log(`Philosopher ${phnum + 1} takes fork ${LEFT(phnum) + 1} and ${phnum + 1} down`);
+                    log(`Philosopher ${phnum + 1} is Thinking`);
                     test(LEFT(phnum));
                     test(RIGHT(phnum));
                 }, 2000);
             }
+            // if (state[phnum] === EATING && state[LEFT(phnum)] === THINKING && state[RIGHT(phnum)] === THINKING){
+            //     state[phnum] = THINKING;
+            // }
         }
 
         function takeFork(phnum) {
@@ -328,17 +332,66 @@
             simulationPaused = false;
             simulationStartTime = Date.now();
 
-            for (let i = 0; i < N; i++) {
-                // philosopher(i);
-                log(`Philosopher ${i + 1} is thinking`);
-            }
-
             setInterval(() => {
+                //random selection
+                //reset
                 for (let i = 0; i < N; i++) {
                     if (simulationRunning && !simulationPaused){
-                    takeFork(i);
+                    state[i] = THINKING;
+                    log(`Philosopher ${i + 1} is thinking`);
                     }
                 }
+                var arr=[];
+                for (let i = 0; i < N; i++) {
+                    if (simulationRunning && !simulationPaused){
+                    
+                    var x=Math.floor(Math.random() * N);
+                    if (arr.includes(x)){
+                        i--;
+                        continue;
+                    }
+                    takeFork(x);
+                    arr.push(x);
+                    }
+                }
+                for(let i = 0; i < N; i++){
+                    if (simulationRunning && !simulationPaused && state[i] === EATING){
+                    
+                    log(`Philosopher ${i + 1} drops fork ${LEFT(i) + 1} and ${i + 1}`);
+                    }
+                }  
+                //reset
+                for (let i = 0; i < N; i++) {
+                    if (simulationRunning && !simulationPaused){
+                    state[i] = THINKING;
+                    log(`Philosopher ${i + 1} is thinking`);
+                    }
+                }
+                // for (let i = 1; i < N; i++) {
+                //     if (simulationRunning && !simulationPaused){
+                //     takeFork(i);
+                //     }
+                // }
+                var arr2=[];
+                for (let i = 0; i < N; i++) {
+                    if (simulationRunning && !simulationPaused){
+                    
+                    var x=Math.floor(Math.random() * N);
+                    if (arr2.includes(x)){
+                        i--;
+                        continue;
+                    }
+                    takeFork(x);
+                    arr2.push(x);
+                    }
+                }
+                for(let i = 0; i < N; i++){
+                    if (simulationRunning && !simulationPaused && state[i] === EATING){
+                    log(`Philosopher ${i + 1} drops fork ${LEFT(i) + 1} and ${i + 1}`);
+                    }
+                }
+                
+                
             }, 1000);
         }
         function getN(){
