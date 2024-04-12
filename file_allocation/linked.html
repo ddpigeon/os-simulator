@@ -1,525 +1,220 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
 <head>
-	<title>Linked Allocation</title>
-	    <meta charset="UTF-8">
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
- <link rel="stylesheet" href="stylesfile.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-         <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <title>Linked Allocation</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="stylesfile.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css"
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Simulator</title>
+    <style>
+        body {
+            background-color: black;
+            padding: 0px;
+        }
+
+        .container {
+            background-color: rgb(0, 255, 255);
+            height: 100vh;
+        }
+
+        input, button {
+            color: black;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            color: black;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
-<body onload="initialise()" style="background-color: black;">
-
+<body>
 	<div style="display: flex; flex-direction: row;">
-        <a class="main-logo" href="../index.html" > OS VISUALIZER </a>
+		<a class="main-logo" href="../index.html"> OS VISUALIZER </a>
 
-        <nav style="display: flex; flex-direction: row; justify-content: flex-end; flex: auto;">
-            <ul>
-              <li><button onclick="location.href = '../index.html';" class="button button3">Home</button></li>
-              <li class="dropdown check-drp"><button class="button button3 dropbtn">Algorithms</button>
-                <div class="dropdown-content">
-                  <a href="../process_scheduling/process.html" style="background-color: black;">Process Scheduling</a>
-                  <a href="../process_sync\home.html" style="background-color: black;">Process Synchronization</a>
-                  <a href="../Bankers/bankers.html" style="background-color: black;">Bankers Algorithm</a>
-                  <a href="../mft_mvt/Fit.html" style="background-color: black;">Fit Algorithms</a>
-                  <a href="../page_replacement/page_replacement_home.html" style="background-color: black;">Page Replacement Algorithm</a>
-                  <a href="../Disk/disk.html" style="background-color: black;">Disk Scheduling</a>
-                  <a href="../file_allocation/file.html" style="background-color: black;">File Allocation</a>
-                  <a href="../mft_mvt\MVFT.html" style="background-color: black;">MFT and MVT</a>
+		<nav style="display: flex; flex-direction: row; justify-content: flex-end; flex: auto;">
+			<ul>
+				<li><button onclick="location.href = '../index.html';" class="button button3">Home</button></li>
+				<li class="dropdown check-drp"><button class="button button3 dropbtn">Algorithms</button>
+					<div class="dropdown-content">
+						<a href="../process_scheduling/process.html" style="background-color: black;">Process
+							Scheduling</a>
+						<a href="../process_sync\home.html" style="background-color: black;">Process Synchronization</a>
+						<a href="../Bankers/bankers.html" style="background-color: black;">Bankers Algorithm</a>
+						<a href="../mft_mvt/Fit.html" style="background-color: black;">Fit Algorithms</a>
+						<a href="../page_replacement/page_replacement_home.html" style="background-color: black;">Page
+							Replacement Algorithm</a>
+						<a href="../Disk/disk.html" style="background-color: black;">Disk Scheduling</a>
+						<a href="../file_allocation/file.html" style="background-color: black;">File Allocation</a>
+						<a href="../mft_mvt\MVFT.html" style="background-color: black;">MFT and MVT</a>
+					</div>
+				</li>
+				<li><button class="button button3" onclick="location.href = '../about.html';">About</button></li>
+				<li><button class="button button3" onclick="location.href = '../references.html';">References</button>
+				</li>
+			</ul>
+		</nav>
+	</div>
+    <div class="container">
+        <div class="Text" style="color: black; margin-left: 22px">
+            <h1 class="some" behavior="alternate" scrollamount=10 style="font-weight: bold">LINKED ALLOCATION</h1>
+            <div id="sequ">
+                <div class="visible1">
+                    <p> Enter the size of memory(number of blocks)</p>
+                    <input id="nof" type="number">
+                    <button class="s_done" onclick="getSize()">Submit</button>
+
+                    <br><br>
+
+                    <div class="s_form s_hide" id="vis2">
+                        <p> Please add file details </p>
+						<div>File name: <input id="file_name" type="text"></div>
+                        <br>
+						<div>File size(number of blocks): <input id="file_size" type="number"></div>
+                        <br>
+						<div>Block numbers (comma-separated): <input id="block_numbers" type="text"></div>
+						<br>
+                        
+                        <button class="s_done" onclick="addFile()">Add</button>
+                        <br>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>File</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Size</th>
+                            <th>Linked Blocks</th>
+                        </tr>
+                        <tbody id="output"></tbody>
+                    </table>
                 </div>
-              </li>
-              <li><button class="button button3" onclick="location.href = '../about.html';">About</button></li>
-              <li><button class="button button3" onclick="location.href = '../references.html';">References</button></li>
-            </ul>
-          </nav>
+            </div>
         </div>
-
-	<div class="container" style="background-color: black;">
-	</br>
-		<div class="jumbotron" style="background-color: rgb(0, 254, 254);">
-		<h1>LINKED ALLOCATION</h1>
-	<p > Enter the total number of Files </p>
-		<input id="nof" type="number">
-
-		<button class="button1"  onclick="show_fields()">SUBMIT</button>
-
-		<!-- =======================input fields =================================-->
-		<form class="s_hide">
-				<h4> First File </h4>
-			STARTING BLOCK:	<input id="file_no" type="number"><br><br>
-			SIZE OF THE FILE:	 <input type="number"><br><br>
-			SIZE OF THE BLOCK: <input type="number"><br><br>
-			<div class="anchor" onclick="inside_form(0)">
-				<a >NEXT</a>
-			</div align="left">
-				<ul>
-				<li class="s_hide">	Block 1: <input  type="number"></li>
-				<li class="s_hide">	Block 2: <input  type="number"></li>
-				<li class="s_hide">	Block 3: <input  type="number"></li>
-				<li class="s_hide">	Block 4: <input  type="number"></li>
-				<li class="s_hide">	Block 5: <input  type="number"></li>
-				<li class="s_hide">	Block 6: <input  type="number"></li>
-				<li class="s_hide">	Block 7: <input  type="number"></li>
-				<li class="s_hide">	Block 8: <input  type="number"></li>
-				<li class="s_hide">	Block_9: <input  type="number"></li>
-				<li class="s_hide">	Block 10:<input type="number"></li>
-				</ul>
-				<div class="anchor" onclick="allocate(0)">
-				<a>ALLOCATE MEMORY</a>
-				</div>
-				<div class="anchor1" onclick="del(0)">
-					<a>CONFIRM</a>
-				</div>
-				<p class="frag_place" style="background-color: rgb(45, 230, 208) ;color:white"></p><br>
-
-			</form>
-
-		<form class="s_hide">
-				<h4> Second File </h4>
-			STARTING BLOCK:	<input  id="file_no" type="number"> <br><br>
-			SIZE OF THE FILE:	 <input type="number"><br><br>
-			SIZE OF THE BLOCK: <input type="number"><br><br>
-			<div class="anchor" onclick="inside_form(1)">
-				<a >NEXT</a>
-			</div>
-				<ul>
-				<li class="s_hide">	Block 1: <input  type="number"></li>
-				<li class="s_hide">	Block 2: <input  type="number"></li>
-				<li class="s_hide">	Block 3: <input  type="number"></li>
-				<li class="s_hide">	Block 4: <input  type="number"></li>
-				<li class="s_hide">	Block 5: <input  type="number"></li>
-				<li class="s_hide">	Block 6: <input  type="number"></li>
-				<li class="s_hide">	Block 7: <input  type="number"></li>
-				<li class="s_hide">	Block 8: <input  type="number"></li>
-				<li class="s_hide">	Block_9: <input  type="number"></li>
-				<li class="s_hide">	Block 10:<input type="number"></li>
-				</ul>
-				<div class="anchor" onclick="allocate(1)">
-				<a >ALLOCATE MEMORY</a>
-			</div>
-				<div class="anchor1" onclick="del(1)">
-					<a>CONFIRM</a>
-				</div>
-				<p class="frag_place" style="background-color: black ;color:white"></p><br>
-
-		</form>
-
-		<form class="s_hide">
-				<h4> Third File </h4>
-			STARTING BLOCK:	<input  id="file_no" type="number"><br><br>
-			SIZE OF THE FILE:	 <input type="number"><br><br>
-			SIZE OF THE BLOCK: <input type="number"><br><br>
-			<div class="anchor">
-				<a onclick="inside_form(2)">NEXT</a>
-			</div>
-				<ul>
-				<li class="s_hide">	Block 1: <input  type="number"></li>
-				<li class="s_hide">	Block 2: <input  type="number"></li>
-				<li class="s_hide">	Block 3: <input  type="number"></li>
-				<li class="s_hide">	Block 4: <input  type="number"></li>
-				<li class="s_hide">	Block 5: <input  type="number"></li>
-				<li class="s_hide">	Block 6: <input  type="number"></li>
-				<li class="s_hide">	Block 7: <input  type="number"></li>
-				<li class="s_hide">	Block 8: <input  type="number"></li>
-				<li class="s_hide">	Block_9: <input  type="number"></li>
-				<li class="s_hide">	Block 10:<input type="number"></li>
-				</ul>
-				<div class="anchor" onclick="allocate(2)">
-				<a>ALLOCATE MEMORY</a>
-			</div>
-			<div class="anchor1" onclick="del(2)">
-					<a>CONFIRM</a>
-				</div>
-			  <p class="frag_place" style="background-color: black ;color:white"></p><br>
-
-		</form>
-
-		<form class="s_hide">
-				<h4> Fourth File </h4>
-			STARTING BLOCK:	<input  id="file_no" type="number"><br><br>
-			SIZE OF THE FILE:	 <input type="number"><br><br>
-			SIZE OF THE BLOCK: <input type="number"><br><br>
-			<div class="anchor">
-				<a onclick="inside_form(3)">NEXT</a>
-			</div>
-				<ul>
-				<li class="s_hide">	Block 1: <input  type="number"></li>
-				<li class="s_hide">	Block 2: <input  type="number"></li>
-				<li class="s_hide">	Block 3: <input  type="number"></li>
-				<li class="s_hide">	Block 4: <input  type="number"></li>
-				<li class="s_hide">	Block 5: <input  type="number"></li>
-				<li class="s_hide">	Block 6: <input  type="number"></li>
-				<li class="s_hide">	Block 7: <input  type="number"></li>
-				<li class="s_hide">	Block 8: <input  type="number"></li>
-				<li class="s_hide">	Block_9: <input  type="number"></li>
-				<li class="s_hide">	Block 10:<input type="number"></li>
-				</ul>
-				<div class="anchor">
-				<a onclick="allocate(3)">ALLOCATE MEMORY</a>
-			</div>
-			<div class="anchor1" onclick="del(3)">
-					<a>CONFIRM</a>
-				</div>
-			    <p class="frag_place" style="background-color: black ;color:white"></p><br>
-		</form>
-
-			<form class="s_hide">
-				<h4> Fifth File </h4>
-				STARTING BLOCK::	<input  id="file_no" type="number"><br><br>
-				SIZE OF THE FILE:	 <input type="number"><br><br>
-				SIZE OF THE BLOCK: <input type="number"><br><br>
-			<div class="anchor">
-				<a onclick="inside_form(4)">NEXT</a>
-			</div>
-				<ul>
-				<li class="s_hide">	Block 1: <input  type="number"></li>
-				<li class="s_hide">	Block 2: <input  type="number"></li>
-				<li class="s_hide">	Block 3: <input  type="number"></li>
-				<li class="s_hide">	Block 4: <input  type="number"></li>
-				<li class="s_hide">	Block 5: <input  type="number"></li>
-				<li class="s_hide">	Block 6: <input  type="number"></li>
-				<li class="s_hide">	Block 7: <input  type="number"></li>
-				<li class="s_hide">	Block 8: <input  type="number"></li>
-				<li class="s_hide">	Block_9: <input  type="number"></li>
-				<li class="s_hide">	Block 10:<input type="number"></li>
-				</ul>
-			<div class="anchor">
-				<a onclick="allocate(4)">ALLOCATE MEMORY</a>
-			</div>
-			<div class="anchor1" onclick="del(4)">
-					<a>CONFIRM</a>
-				</div>
-			<p class="frag_place" style="background-color: black ;color:white"></p><br>
-			</form>
-
-			<form class="s_hide">
-				<h4>Sixth File </h4>
-				STARTING BLOCK::	<input  id="file_no" type="number"><br><br>
-				SIZE OF THE FILE:	 <input type="number"><br><br>
-				SIZE OF THE BLOCK: <input type="number"><br><br>
-			<div class="anchor">
-				<a onclick="inside_form(5)">NEXT</a>
-			</div>
-					<ul>
-				<li class="s_hide">	Block 1:<input  type="number"></li>
-				<li class="s_hide">	Block 2:<input  type="number"></li>
-				<li class="s_hide">	Block 3:<input  type="number"></li>
-				<li class="s_hide">	Block 4:<input  type="number"></li>
-				<li class="s_hide">	Block 5:<input  type="number"></li>
-				<li class="s_hide">	Block 6:<input  type="number"></li>
-				<li class="s_hide">	Block 7:<input  type="number"></li>
-				<li class="s_hide">	Block 8:<input  type="number"></li>
-				<li class="s_hide">	Block_9:<input  type="number"></li>
-				<li class="s_hide">	Block 10:<input type="number"></li>
-				</ul>
-				<div class="anchor">
-				<a onclick="allocate(5)">ALLOCATE MEMORY</a>
-			</div>
-			<div class="anchor1" onclick="del(5)">
-					<a>CONFIRM</a>
-				</div>
-			 <p class="frag_place" style="background-color: black ;color:white"></p><br>
-			</form>
-
-			<form class="s_hide">
-				<h4> Seventh File </h4>
-				STARTING BLOCK:	<input  id="file_no" type="number"><br><br>
-				SIZE OF THE FILE:	 <input type="number"><br><br>
-				SIZE OF THE BLOCK: <input type="number"><br><br>
-			<div class="anchor">
-				<a onclick="inside_form(6)">NEXT</a>
-			</div>
-				<ul>
-				<li class="s_hide">	Block 1: <input  type="number"></li>
-				<li class="s_hide">	Block 2: <input  type="number"></li>
-				<li class="s_hide">	Block 3: <input  type="number"></li>
-				<li class="s_hide">	Block 4: <input  type="number"></li>
-				<li class="s_hide">	Block 5: <input  type="number"></li>
-				<li class="s_hide">	Block 6: <input  type="number"></li>
-				<li class="s_hide">	Block 7: <input  type="number"></li>
-				<li class="s_hide">	Block 8: <input  type="number"></li>
-				<li class="s_hide">	Block_9: <input  type="number"></li>
-				<li class="s_hide">	Block 10:<input type="number"></li>
-				</ul>
-				<div class="anchor">
-				<a onclick="allocate(6)">ALLOCATE MEMORY</a>
-			</div>
-			<div class="anchor1" onclick="del(6)">
-					<a>CONFIRM</a>
-				</div>
-			    <p class="frag_place" style="background-color: black ;color:white"></p><br>
-			</form>
-
-			<form class="s_hide">
-				<h4> Eight File </h4>
-				STARTING BLOCK:	<input  id="file_no" type="number"><br><br>
-				SIZE OF THE FILE:	 <input type="number"><br><br>
-				SIZE OF THE BLOCK: <input type="number"><br><br>
-			<div class="anchor">
-				<a onclick="inside_form(7)">NEXT</a>
-			</div>
-				<ul>
-				<li class="s_hide">	Block 1: <input  type="number"></li>
-				<li class="s_hide">	Block 2: <input  type="number"></li>
-				<li class="s_hide">	Block 3: <input  type="number"></li>
-				<li class="s_hide">	Block 4: <input  type="number"></li>
-				<li class="s_hide">	Block 5: <input  type="number"></li>
-				<li class="s_hide">	Block 6: <input  type="number"></li>
-				<li class="s_hide">	Block 7: <input  type="number"></li>
-				<li class="s_hide">	Block 8: <input  type="number"></li>
-				<li class="s_hide">	Block_9: <input  type="number"></li>
-				<li class="s_hide">	Block 10:<input type="number"></li>
-				</ul>
-				<div class="anchor">
-					<a onclick="allocate(7)">ALLOCATE MEMORY</a>
-				</div>
-				<div class="anchor1" onclick="del(7)">
-					<a>CONFIRM</a>
-				</div>
-	                 <p class="frag_place" style="background-color: black ;color:white"></p><br>
-			</form>
-
-	<p id="error_check"></p>
-	<div class="s_hide" id="output_space">
-		<p class="out"></p>
-		<p class="out"></p>
-		<p class="out"></p>
-		<p class="out"></p>
-		<p class="out"></p>
-		<p class="out"></p>
-		<p class="out"></p>
-		<p class="out"></p>
-
-	</div>
-</div>
-	</div>
-
+    </div>
 </body>
 
 <script>
-/*to display the input fields*/
-	var form_no = -1,show_output=-1;
-	var file_ind=[],count=1;
+    var used, next, remaining, allocations;
+    var file_sizes = new Array(200);
+    var file_names = new Array(200);
+    var block_numbers_arr = new Array(200);
+	var file_index_blocks = new Array(200);
+    var count = 0;
+    var memSize;
+	var indexblock;
 
-	function show_fields()
-	{
-			var no_of_files = document.getElementById("nof").value;
-			for(var i=0;i<no_of_files;++i)
-				s_add_in();
+    function getSize() {
+        memSize = document.getElementById("nof").value;
 
-	}
+        if (memSize != "") {
+            vis2 = document.getElementById("vis2");
+            vis2.style.visibility = "visible";
+            vis2.classList.remove("s_hide");
 
-	function s_add_in()
-	{
-		form_no = form_no +1;
-		var f = document.getElementsByTagName("form")[form_no];
+            used = new Array(parseInt(memSize));
+            next = new Array(parseInt(memSize));
+            remaining = parseInt(memSize);
+            allocations = new Array(parseInt(memSize));
+            for (var i = 0; i < parseInt(memSize); i++) {
+                allocations[i] = -1;
+                used[i] = false;
+                next[i] = -1;
+            }
+        }
+        else
+            alert("Please enter valid size!");
+    }
 
-		var att = document.createAttribute("class");
-		att.value ="s_show";
+    function addFile() {
+        var name = document.getElementById("file_name").value;
+        var size = document.getElementById("file_size").value;
+        var blockNumbers = document.getElementById("block_numbers").value;
+        size = parseInt(size);
 
-		f.setAttributeNode(att);
-	}
+        if (name != "" && size != "" && blockNumbers != "" ) {
+            if (size+1 > remaining) {
+                alert("Cannot allocate!!");
+            }
+            else {
+                block_numbers_arr[count] = blockNumbers.split(',').map(Number).filter(function(n) { return !isNaN(n); });
+                if (block_numbers_arr[count].length !== size) {
+                    alert("Invalid block numbers. Please enter " + size + " block numbers separated by commas.");
+                    return;
+                }
+                for (var i = 0; i < block_numbers_arr[count].length; i++) {
+                    var blockNum = block_numbers_arr[count][i];
+                    if (blockNum >= memSize || blockNum < 0 || used[blockNum]) {
+                        alert("Invalid block number: " + blockNum);
+                        return;
+                    }
+                    allocations[blockNum] = count + 1;
+                    used[blockNum] = true;
+                }
+                file_names[count] = name;
+                file_sizes[count] = size;
+                count++;
+                showOutput();
+                remaining -= size;
+            }
+        }
+        else {
+            alert("Please enter all details!!");
+        }
+    }
 
-/*to display the block numbers*/
-var block_number=[];
+    function showOutput() {
+        var output = document.getElementById("output");
+        output.innerHTML = "";
 
-windows.onload = function()
-{
-	initialise();
-};
+        for (var i = 0; i < count; i++) {
+            var start = block_numbers_arr[i][0];
+            var end = block_numbers_arr[i][block_numbers_arr[i].length - 1];
+            var row = document.createElement("tr");
 
-	function initialise()
-	{
-		for(var i=0;i<8;++i)
-		{
-			block_number.push(-1);
-		}
-		for(var i=0;i<1000;++i)
-			file_ind.push(-1);
-	}
+            var fileCell = document.createElement("td");
+            fileCell.innerHTML = file_names[i];
+            row.appendChild(fileCell);
 
-	function inside_form(form_numb)
-	{
-		var pos = 13*form_numb;		//this is the base value
-/*		document.getElementById("sample").innerHTML = block_number[form_numb];*/
-		var ch = check(form_numb);
-		if(ch == 0)
-			return;
+            var startCell = document.createElement("td");
+            startCell.innerHTML = start;
+            row.appendChild(startCell);
 
-		var file_size = document.getElementsByTagName("input")[pos+2].value;
-		var blk_size = document.getElementsByTagName("input")[pos+3].value;
+            var endCell = document.createElement("td");
+            endCell.innerHTML = end;
+            row.appendChild(endCell);
 
-		var no_of_blocks = (file_size / blk_size);
-		var pos_li = form_numb *10;
-		//changed here -1
-		for(var i=0;i<no_of_blocks-1;++i)
-		{
-			var f = document.getElementsByTagName("li")[pos_li+i];
-			var att = document.createAttribute("class");
-			att.value ="s_show";
-			f.setAttributeNode(att);
-		}
+            var sizeCell = document.createElement("td");
+            sizeCell.innerHTML = file_sizes[i];
+            row.appendChild(sizeCell);
 
-		var y = 3*form_numb +1;
-		var f = document.getElementsByTagName("a")[y];
-		var att = document.createAttribute("class");
-		att.value = "s_show";
-		f.setAttributeNode(att);
-	}
+            var blocksCell = document.createElement("td");
+            blocksCell.innerHTML = block_numbers_arr[i].join('->');
+            row.appendChild(blocksCell);
 
-	function check(in_num)
-	{
-		var len = file_ind.length;
-		var z = in_num *13 +1;
-		var index = document.getElementsByTagName("input")[z].value;
-
-		if(file_ind[index] == 1)
-		{
-			alert("The file index "+ index +"is already allocated");
-			return 0;
-		}
-		else
-		{
-			file_ind[index]  =1;
-			return 1;
-		}
-	}
-
-	/*===================================ALLOCATION==============================*/
-
-
-	function allocate(in_form)
-	{
-		var str = [];
-		var pos = 13* in_form;
-		var values = in_form * 10;
-		var file_size = document.getElementsByTagName("input")[pos+2].value;
-		var blk_size = document.getElementsByTagName("input")[pos+3].value;
-
-		var no_of_blocks = Math.ceil (file_size / blk_size);
-
-		//for each and every entry check whether it is allocated or not
-		for(var i=0;i<no_of_blocks;++i)
-		{
-			var x1 = document.getElementsByTagName("li")[values+i];	//this will give us the values+i th li element
-			var x = x1.getElementsByTagName("input")[0].value;		// this will give us the 0th input element in the x1 li , we put 0 coz each 														li has only 1 input
-			if(file_ind[x] == 1)
-			{
-				alert("The file index "+ x +" is already allocated");
-				return;
-			}
-
-			else{
-				file_ind[x]=1;
-			}
-
-			if(i == no_of_blocks-1)
-			{
-				alert("All the files have been allocated");
-				var frag;
-				frag=((no_of_blocks)*blk_size)-file_size;
-				if(frag!=0)
-				{
-				  //document.getElementsByClassName("frag_place")[in_form].innerHTML="<h3>Internal Fragment :"+frag;
-			    }
-
-				var f =document.getElementById("output_space");
-				var att = document.createAttribute("class");
-				att.value = "s_show";
-				f.setAttributeNode(att);
-
-				var index_value = document.getElementsByTagName("input")[pos+1].value;
-				str = str + index_value ;
-
-				if(no_of_blocks == (file_size / blk_size) )
-				{
-					str="File "+count+" is allocated "+str;
-						for(var i=0;i<no_of_blocks;++i)
-						{
-
-							// im retriving the file number(block number) and put it in the chosen paragraphs
-							var x1 = document.getElementsByTagName("li")[values+i];
-							var x = x1.getElementsByTagName("input")[0].value;
-							if(i== no_of_blocks-1)
-							{
-								str = str + "--->" + x;
-							}
-							else{
-								str = str + "--->" + x;
-							}
-							//str="File "+count+"is allocated "
-							if(i == no_of_blocks-1){
-								var k = document.getElementsByClassName("out")[in_form];
-								k.innerHTML = str;
-
-							}
-						}
-					}
-					else
-                        {
-                        	str="File "+count+" is allocated "+str;
-
-                          for(var i=0;i<no_of_blocks;++i)
-						{
-							var x1 = document.getElementsByTagName("li")[values+i];
-							var x = x1.getElementsByTagName("input")[0].value;
-							if(i== no_of_blocks-1)
-							{
-								str = str + "--->" + x;
-							}
-							else{
-								str = str + "--->" + x;
-							}
-
-							/* for file 1 give red,2->blue*/
-							//here we style the output paragraph
-							if(i== no_of_blocks-1){
-								var k = document.getElementsByClassName("out")[in_form];
-								k.innerHTML = str;
-
-							}
-						}
-                        }
-                        count++;
-			}
-		}
-	}
-
-	function del(in_form)
-	{
-		var out_start=0;
-		//find the starting index of the output
-		for(var i=0;i<8;++i)
-		{
-			var pos = 13* in_form;
-			var values = in_form * 10;
-			var file_size = document.getElementsByTagName("input")[pos+2].value;
-			var blk_size = document.getElementsByTagName("input")[pos+3].value;
-
-			var values = in_form * 10;
-
-			var no_of_blocks = Math.ceil (file_size / blk_size);
-
-
-
-			if(i == in_form)
-			{
-				file_ind[in_form] = 0;
-				var k =document.getElementsByClassName("out")[in_form];
-				k.innerHTML = "";
-				for(var j=0; j<no_of_blocks; ++j)
-				{
-					var x1 = document.getElementsByTagName("li")[values+j];	//this will give us the values+i th li element
-					var x = x1.getElementsByTagName("input")[0].value;
-
-					file_ind[x] = 0;
-				}
-			}
-
-			out_start = out_start + no_of_blocks;
-		}
-	}
-
+            output.appendChild(row);
+        }
+    }
 </script>
+
 </html>
