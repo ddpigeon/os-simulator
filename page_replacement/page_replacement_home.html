@@ -243,25 +243,30 @@
             <div class="row">
                 <!-- Column 1 -->
                 <div class="column1">
+                    <h2>Demand Paging</h2>
+                    <p>Demand paging, a memory management technique, loads only necessary program pages into memory at runtime, rather than the entire program. When a program accesses a page not in memory, a page fault occurs, prompting the OS to load the required page from disk. This process is transparent to the program, which continues running seamlessly. Demand paging optimizes memory usage and system performance by dynamically managing memory resources based on program requirements.</p>
+                </div>
+                <!-- Column 2 -->
+                <div class="column1">
                     <h2>FIFO</h2>
                     <p>The FIFO (First-In-First-Out) page replacement algorithm is a technique used in operating systems to manage memory by replacing the oldest page in the main memory when a page fault occurs. This algorithm operates on the principle of treating the pages in memory as a queue, where the page that entered first is the one to be replaced first.</p>
                 </div>
-                <!-- Column 2 -->
+                <!-- Column 3 -->
                 <div class="column1">
                     <h2>OPTIMAL</h2>
                     <p>The Optimal algorithm works by replacing the page that will not be used for the longest period of time in the future. To determine which page to evict, it requires knowledge of the future memory access patterns, which is usually not available in practical systems. The algorithm looks ahead into the future and selects the page that will be accessed farthest in the future and replaces it.</p>
                 </div>
-                <!-- Column 3 -->
+                <!-- Column 4 -->
                 <div class="column1">
                     <h2>LRU</h2>
                     <p>The LRU (Least Recently Used) page replacement algorithm is a technique used in operating systems to manage memory by replacing the page that has been least recently accessed. It assumes that pages that have not been accessed recently are less likely to be accessed in the near future.</p>
                 </div>
-                <!-- Column 4 -->
+                <!-- Column 5 -->
                 <div class="column1">
                     <h2>MRU</h2>
                     <p>The MRU (Most Recently Used) page replacement algorithm is a technique used in operating systems to manage memory by replacing the page that has been most recently accessed. It assumes that recently used pages are more likely to be accessed again in the near future.</p>
                 </div>
-                <!-- Column 5 -->
+                <!-- Column 6 -->
                 <div class="column1">
                     <h2>RANDOM</h2>
                     <p>The random page replacement algorithm is a simple technique, used in operating systems to manage Memory. It involves selecting a page for replacement randomly when a page fault occurs and the main memory is full.</p>
