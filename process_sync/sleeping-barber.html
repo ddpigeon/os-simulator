@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="Barberscript.js"></script>
+    <title>Dining Philosopher Problem</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            color: white;
+            font-size: 20px;
+        }
+        nav {
+            background-color: #0f0d0e;
+            height: 90px;
+            display:flex;
+            justify-content:space-between;
+            background: rgba(10, 4, 4, 0);
+            position:relative;
+            align-items: center;
+        }
+        .logo {
+            border-radius: 12px;
+            margin: 15px;
+            margin-left: 4%;
+            padding: 10px 10px 10px 10px;
+            background: #231F20;
+            color: #f9f4da;
+            text-align: center;
+            font: 20px 'Outfit', sans-serif;
+            justify-content: center;
+            transition: 0.5s;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .logo:hover {
+            color: rgb(0, 0, 0);
+            background-color: rgb(0, 255, 255);
+        }
+        ul {
+            list-style: none;
+            margin-right: 4%;
+            padding: 0;
+            display:flex;
+            justify-content:right;
+            align-items: center;
+            height: 100%;
+        }
+        li {
+            margin: 0 20px;
+        }
+        a {
+            color: #28cefc;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight:bold;
+            text-transform: uppercase;
+        }
+        .button {
+            background-color: #f6fd0f;
+            color: #0f0d0e;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+        }
+        .button1 {
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+            border-radius: 5px;
+            border: 2px solid rgb(0, 255, 255);
+        }
+        .button1:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 135px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            background: rgba(2, 2, 0, 0.45);
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10.3px);
+            -webkit-backdrop-filter: blur(10.3px);
+        }
+        .dropdown-content a {
+            color: #00FEFE;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition-duration: 0.25s;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 550;
+            font-size: small;
+        }
+        .dropdown-content a:hover {
+            background-color:#00FEFE;
+            color: #0f0d0e;
+            border-radius: 5px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .logobutton{
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.5s;
+            font: 15px 'Outfit', sans-serif;
+            font-weight: 550;
+            border-radius: 5px;
+            background-color: #0f0d0e; 
+            color: #ffffff; 
+        }
+        .logobutton:hover {
+            background-color: rgb(0, 255, 255);
+            color: #0b0005;
+        }
+        .container {
+            display: flex;
+            width: 83%;
+            height: 100%;
+            border-radius: 10px;
+            border: 1px solid rgb(0, 255, 255);
+            overflow: hidden;
+        }
+        .left-container {
+            width: 50%;
+            padding: 25px;
+            box-sizing: border-box;
+            text-align: justify;
+            border: 1px solid rgb(0, 255, 255);
+            margin-right: 20px;
+            border-radius: 20px;
+        }
+        .right-container {
+            max-height: 100%;
+            width: 80%;
+            height: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            text-align: justify;
+            border: 1px solid rgb(0, 255, 255);
+            border-radius: 20px;
+        }
+    
+        h1 {
+            text-align: center;
+        }
+    
+        .left-container input {
+            height: 25px;
+        }
+
+        .left-container button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            font-weight: 700;
+            border: none;
+            border-radius: 25px;
+        }
+    
+        .left-container button:hover {
+            background-color: rgb(0,200,100);
+        }
+    
+        .philosopher {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+        }
+        .plate {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: orange;
+            align-items: center;
+            color: black;
+            font-weight: 700;
+            margin: 10px auto;
+        }
+        .fork {
+            width: 30px;
+            height: 5px;
+            background-color: white;
+            color: orange;
+            margin: 10px auto;
+        }
+    
+        #table {
+            max-height: 40%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            overflow-y: scroll;
+        }
+    
+        #output {
+            margin-bottom: 5px;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            max-height: 60%;
+            overflow-y: scroll;
+        }
+    </style> 
+  </head>
+
+<body>
+    <nav>
+        <a class="logo" href="../index.html"> OS VISUALIZER </a>
+        <ul>
+            <li><button onclick="location.href = '../index.html';" class="button button1">Home</button></li>
+            <li class="dropdown"><button class="button button1 dropbtn">Algorithms</button>
+              <div class="dropdown-content">
+                  <a href="../process_scheduling/process.html">Process Scheduling</a>
+                  <a href="../process_sync\home.html">Process Synchronization</a>
+                  <a href="../Bankers/bankers.html">Bankers Algorithm</a>
+                  <a href="../mft_mvt/Fit.html">Fit Algorithms</a>
+                  <a href="../page_replacement/page_replacement_home.html">Page Replacement Algorithm</a>
+                  <a href="../Disk/disk.html">Disk Scheduling</a>
+                  <a href="../file_allocation/file.html">File Allocation</a>
+                  <a href="../mft_mvt/MVFT.html">MFT and MVT</a>
+              </div>
+            </li>
+            <li><button class="button button1" onclick="location.href = '../about.html';"> About </button></li>
+            <li><button class="button button1" onclick="location.href = '../references.html';"> References</button></li>
+        </ul>        
+    </nav>
+    <hero
+      class="grid px-5 lg:px-14 grid-cols-1 lg:grid-cols-2 items-center justify-items-center h-screen"
+    >
+      <!-- <div class="flex flex-col items-center lg:items-start gap-20"> -->
+        <div class="w-10/12">
+          <h1 class="text-4xl font-bold text-slate-800" style="color: white;">
+            Sleeping Barber Simulation
+          </h1>
+          <p class="text-xl text-slate-800 " style="color: wheat; padding-left: 50px;">
+            This is a simulation of the Sleeping Barber problem. The barber
+            sleeps until a customer arrives. If there are no customers, the
+            barber goes to sleep. If a customer arrives when the barber is
+            cutting hair, the customer waits if there are empty chairs. If there
+            are no empty chairs, the customer leaves the shop.
+          </p>
+        </div>
+        <div>
+          <a href="#simulation">
+            <button class="button button1">
+              Start Simulation
+            </button>
+          </a>
+        </div>
+      </div>
+      <!-- <div class="hidden lg:block">
+        <img
+          src="hero.png"
+          class="rounded-xl w-11/12 border-2 border-blue-600 border-opacity-50 shadow-xl"
+          alt="Hero"
+        />
+      </div> -->
+    </hero>
+
+    <div
+      class="p-3  md:w-9/12 grid grid-cols-1 gap-4 mx-auto"
+      id="simulation"
+    >
+      <div class="container container">
+        <h1 class="text-3xl font-bold text-center mb-4" style="padding: 50px;">Sleeping Barber</h1>
+        
+        <div style="padding: 50px;">
+            <div class="flex flex-col">
+              <label
+                class="text-gray-700 text-sm font-bold mb-2"
+                for="customerCount" style="color: #f9f4da;"
+                >Customer Count</label
+              >
+              <input
+                class="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="customerCount"
+                type="text"
+                placeholder="e.g. 1 2 3 4"
+              />
+            </div>
+            <div class="flex flex-col mt-4">
+              <label class="text-gray-700 text-sm font-bold mb-2" for="chairCount" style="color: #f9f4da;"
+                >Chair Count</label
+              >
+              <input
+                class="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="chairCount"
+                type="number"
+                placeholder="e.g. 2"
+              />
+              <p id="chEr" class="text-red-600 mt-2 text-xs italic hidden">
+                chair must be greater than 0
+              </p>
+            </div>
+            <div class="flex flex-col mt-4">
+              <button
+                id="startButton"
+                class="button button1"
+                onclick="start()"
+              >
+                Start
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <div class="p-4 w-9/12 grid grid-cols-1 gap-4 mx-auto">
+      <div class="flex flex-col justify-end items-center" >
+        <h1 class="text-xl font-bold text-center mb-4">Simulation Output</h1>
+      </div>
+      <div
+        class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 bg-white p-4 rounded-lg"
+      >
+        <div class="bg-black p-4 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold text-center">Customer Leaving Shop</h2>
+          <div id="leaveWaitingRoom" class="grid grid-cols-1 gap-4 mt-4"></div>
+        </div>
+        <div class="bg-black p-4 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold text-center">Customer Waiting Room</h2>
+          <div id="waitingRoom" class="grid grid-cols-1 gap-4 mt-4"></div>
+        </div>
+        <div class="bg-black p-4 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold text-center">Haircut Room</h2>
+          <div id="cuttingRoom" class="grid grid-cols-1 gap-4 mt-4"></div>
+        </div>
+        <div
+          id="cuttingLeaving"
+          class="bg-black p-4 rounded-lg shadow-lg hidden"
+        >
+          <h2 class="text-xl font-bold text-center">
+            Customer Leaving After Cut
+          </h2>
+          <div
+            id="cuttingLeavingRoom"
+            class="grid grid-cols-1 gap-4 mt-4"
+          ></div>
+        </div>
+        <div id="baberSl" class="bg-black p-4 rounded-lg shadow-lg hidden">
+          <h2 class="text-xl font-bold text-center">Barber Sleeping</h2>
+          <div id="barberSleeping" class="mt-4"></div>
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
