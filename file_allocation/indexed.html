@@ -92,6 +92,8 @@
                         <br>
 						<div>File size(number of blocks): <input id="file_size" type="number"></div>
                         <br>
+						<div>Index Block: <input id="index_block" type="number"></div>
+						<br>
 						<div>Block numbers (comma-separated): <input id="block_numbers" type="text"></div>
 						<br>
                         
@@ -104,6 +106,7 @@
                             <th>Start</th>
                             <th>End</th>
                             <th>Size</th>
+							<th>Index Block</th>
                             <th>Blocks</th>
                         </tr>
                         <tbody id="output"></tbody>
@@ -119,8 +122,10 @@
     var file_sizes = new Array(200);
     var file_names = new Array(200);
     var block_numbers_arr = new Array(200);
+	var file_index_blocks = new Array(200);
     var count = 0;
     var memSize;
+	var indexblock;
 
     function getSize() {
         memSize = document.getElementById("nof").value;
@@ -148,18 +153,25 @@
         var name = document.getElementById("file_name").value;
         var size = document.getElementById("file_size").value;
         var blockNumbers = document.getElementById("block_numbers").value;
+		indexblock = document.getElementById("index_block").value;
         size = parseInt(size);
 
-        if (name != "" && size != "" && blockNumbers != "") {
-            if (size > remaining) {
+        if (name != "" && size != "" && blockNumbers != "" && indexblock != "") {
+            if (size+1 > remaining) {
                 alert("Cannot allocate!!");
             }
             else {
                 block_numbers_arr[count] = blockNumbers.split(',').map(Number).filter(function(n) { return !isNaN(n); });
+				if(used[indexblock]){
+					alert("Index block has already been alloted");
+					return;
+				}
                 if (block_numbers_arr[count].length !== size) {
                     alert("Invalid block numbers. Please enter " + size + " block numbers separated by commas.");
                     return;
                 }
+				used[indexblock]=true;
+				file_index_blocks[count] = indexblock;
                 for (var i = 0; i < block_numbers_arr[count].length; i++) {
                     var blockNum = block_numbers_arr[count][i];
                     if (blockNum >= memSize || blockNum < 0 || used[blockNum]) {
@@ -172,7 +184,7 @@
                 file_names[count] = name;
                 file_sizes[count] = size;
                 count++;
-                showOutput();
+                showOutput(indexblock);
                 remaining -= size;
             }
         }
@@ -181,7 +193,7 @@
         }
     }
 
-    function showOutput() {
+    function showOutput(indexBlock) {
         var output = document.getElementById("output");
         output.innerHTML = "";
 
@@ -205,6 +217,10 @@
             var sizeCell = document.createElement("td");
             sizeCell.innerHTML = file_sizes[i];
             row.appendChild(sizeCell);
+
+			var idxCell = document.createElement("td");
+            idxCell.innerHTML = file_index_blocks[i];
+            row.appendChild(idxCell);
 
             var blocksCell = document.createElement("td");
             blocksCell.innerHTML = block_numbers_arr[i].join(',');

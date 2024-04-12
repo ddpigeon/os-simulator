@@ -247,10 +247,11 @@
             <h1>Dining Philosopher Problem</h1>
             <p>The Dining Philosophers problem is a synchronization challenge in which a group of philosophers sit around a dining table with forks between them. Each philosopher needs two forks to eat, and the problem arises when all philosophers attempt to pick up the forks simultaneously, leading to a deadlock. Techniques like semaphores or mutexes are used to manage access to the forks and prevent deadlocks, ensuring that philosophers can eat without causing conflicts.</p>
             <label for="num-philosophers">Number of Philosophers:</label>
-            <input type="number" id="num-philosophers" min="2" value="5">
+            <input type="number" id="num-philosophers" oninput="getN()" min="2" value="">
             <button id="start-simulation">Start Simulation</button>
-            <button id="pause-simulation" style="display: none;">Pause Simulation</button>
+            <button id="pause-simulation" style="display: none;" >Pause Simulation</button>
             <button id="resume-simulation" style="display: none;">Resume Simulation</button>
+            <button id="stop-simulation" style="display: none;" onclick="stopSim()">Stop Simulation</button>
         </div>
         <div class="right-container">
             <div id="table"></div>
@@ -259,121 +260,49 @@
     </div>
 
     <script>
-        const THINKING = 2;
-        const HUNGRY = 1;
-        const EATING = 0;
-
-        let N;
-        let state = [];
-        let philosophers = [];
-        let forks = [];
-        let mutex = new Semaphore(1);
-        let semaphores = [];
+        
         let simulationRunning = false;
         let simulationPaused = false;
         let simulationStartTime;
         let simulationDuration = 10000; // 10 seconds
 
-        function Semaphore(value) {
-            this.value = value;
-            this.queue = [];
-        }
 
-        Semaphore.prototype.wait = function () {
-            return new Promise((resolve) => {
-                if (this.value > 0) {
-                    this.value--;
-                    resolve();
-                } else {
-                    this.queue.push(resolve);
-                }
-            });
-        };
+        // const N = 5;
+        // get numeber from input
+        
+        console.log("Number of philosophers:", N);
+        var N;
+        // var N = document.getElementById("num-philosophers").value;
+        const THINKING = 2;
+        const HUNGRY = 1;
+        const EATING = 0;
+        const LEFT = (phnum) => (phnum + (N-1)) % N;
+        const RIGHT = (phnum) => (phnum + 1) % N;
 
-        Semaphore.prototype.signal = function () {
-            if (this.queue.length > 0) {
-                const resolve = this.queue.shift();
-                resolve();
-            } else {
-                this.value++;
-            }
-        };
+        let state = new Array(N).fill(THINKING);
 
-        function Philosopher(id) {
-            this.id = id;
-            this.state = THINKING;
-            this.leftFork = null;
-            this.rightFork = null;
-        }
+        function test(phnum) {
+            if (state[phnum] === HUNGRY && state[LEFT(phnum)] !== EATING && state[RIGHT(phnum)] !== EATING) {
+                state[phnum] = EATING;
+                self.postMessage({ philosopherId: phnum + 1, action: 'is Eating' });
+                log(`Philosopher ${phnum + 1} eats`);
 
-        Philosopher.prototype.test = async function (phnum) {
-            const LEFT = (phnum + 4) % N;
-            const RIGHT = (phnum + 1) % N;
-
-            if (this.state === HUNGRY && state[LEFT] !== EATING && state[RIGHT] !== EATING) {
-                this.state = EATING;
-                await sleep(2000);
-                log(`Philosopher ${this.id + 1} takes fork ${LEFT + 1} and ${this.id + 1}`);
-                log(`Philosopher ${this.id + 1} is Eating`);
-                semaphores[this.id].signal();
-            }
-        };
-
-        Philosopher.prototype.takeFork = async function () {
-            await mutex.wait();
-            this.state = HUNGRY;
-            log(`Philosopher ${this.id + 1} is Hungry`);
-            await this.test(this.id);
-            mutex.signal();
-            await semaphores[this.id].wait();
-            await sleep(1000);
-        };
-
-        Philosopher.prototype.putFork = async function () {
-            await mutex.wait();
-            this.state = THINKING;
-            const LEFT = (this.id + 4) % N;
-            const RIGHT = (this.id + 1) % N;
-            log(`Philosopher ${this.id + 1} putting fork ${LEFT + 1} and ${this.id + 1} down`);
-            log(`Philosopher ${this.id + 1} is thinking`);
-            await this.test(LEFT);
-            await this.test(RIGHT);
-            mutex.signal();
-        };
-
-        async function philosopher(num) {
-            while (simulationRunning) {
-                if (!simulationPaused && Date.now() - simulationStartTime < simulationDuration) {
-                    await philosophers[num].takeFork();
-                    await philosophers[num].putFork();
-                } else {
-                    await semaphores[num].wait();
-                }
+                // Simulate eating for 2 seconds
+                setTimeout(() => {
+                    state[phnum] = THINKING;
+                    self.postMessage({ philosopherId: phnum + 1, action: 'is Thinking' });
+                    log(`Philosopher ${phnum + 1} takes fork ${LEFT(phnum) + 1} and ${phnum + 1} down`);
+                    test(LEFT(phnum));
+                    test(RIGHT(phnum));
+                }, 2000);
             }
         }
 
-        function createPhilosopher(id) {
-            const philosopher = new Philosopher(id);
-            const philosopherDiv = document.createElement("div");
-            philosopherDiv.className = "philosopher";
-
-            const plate = document.createElement("div");
-            plate.className = "plate";
-            plate.textContent = `P${id + 1}`;
-
-            const leftForkDiv = document.createElement("div");
-            leftForkDiv.className = "fork";
-
-            const rightForkDiv = document.createElement("div");
-            rightForkDiv.className = "fork";
-
-            philosopherDiv.appendChild(plate);
-            philosopherDiv.appendChild(leftForkDiv);
-            philosopherDiv.appendChild(rightForkDiv);
-
-            document.getElementById("table").appendChild(philosopherDiv);
-
-            return philosopher;
+        function takeFork(phnum) {
+            state[phnum] = HUNGRY;
+            self.postMessage({ philosopherId: phnum + 1, action: 'is Hungry' });
+            log(`Philosopher ${phnum + 1} is Hungry`);
+            test(phnum);
         }
 
         function sleep(ms) {
@@ -392,50 +321,50 @@
         }
 
         function init() {
+            
             clearTable();
 
             simulationRunning = true;
             simulationPaused = false;
             simulationStartTime = Date.now();
 
-            N = parseInt(document.getElementById("num-philosophers").value, 10);
-            if (isNaN(N) || N < 2) {
-                alert("Please enter a valid number of philosophers (2 or more).");
-                return;
-            }
-
-            state = new Array(N).fill(THINKING);
-            philosophers = new Array(N);
-            forks = new Array(N);
-            semaphores = new Array(N);
-
             for (let i = 0; i < N; i++) {
-                const philosopher = createPhilosopher(i);
-                philosophers[i] = philosopher;
-            }
-
-            for (let i = 0; i < N; i++) {
-                forks[i] = {}; // Placeholder for forks
-            }
-
-            for (let i = 0; i < N; i++) {
-                const philosopher = philosophers[i];
-                philosopher.leftFork = forks[i];
-                philosopher.rightFork = forks[(i + 1) % N];
-                semaphores[i] = new Semaphore(0);
-            }
-
-            for (let i = 0; i < N; i++) {
-                philosopher(i);
+                // philosopher(i);
                 log(`Philosopher ${i + 1} is thinking`);
             }
+
+            setInterval(() => {
+                for (let i = 0; i < N; i++) {
+                    if (simulationRunning && !simulationPaused){
+                    takeFork(i);
+                    }
+                }
+            }, 1000);
+        }
+        function getN(){
+            N = document.getElementById("num-philosophers").value;
+            if (N<2){
+                log("Number of philosophers should be atleast 2");
+                N=0;
+            }
+            // N = document.getElementById("num-philosophers").getAttribute("value");
+        }
+
+        function startSim(){
+            
+            init();
+            document.getElementById("start-simulation").style.display = "none";
+            document.getElementById("pause-simulation").style.display = "inline-block";
+            document.getElementById("resume-simulation").style.display = "none";
+            document.getElementById("stop-simulation").style.display = "inline-block";
         }
 
         function pauseSimulation() {
             simulationPaused = true;
-            document.getElementById("start-simulation").style.display = "inline-block";
+            document.getElementById("start-simulation").style.display = "none";
             document.getElementById("pause-simulation").style.display = "none";
             document.getElementById("resume-simulation").style.display = "inline-block";
+            document.getElementById("stop-simulation").style.display = "inline-block";
         }
 
         function resumeSimulation() {
@@ -443,14 +372,39 @@
             document.getElementById("start-simulation").style.display = "none";
             document.getElementById("pause-simulation").style.display = "inline-block";
             document.getElementById("resume-simulation").style.display = "none";
-            for (let i = 0; i < N; i++) {
-                semaphores[i].signal();
-            }
+            document.getElementById("stop-simulation").style.display = "inline-block";
+            // for (let i = 0; i < N; i++) {
+            //     semaphores[i].signal();
+            // }
+        }
+        function stopSim(){
+            simulationRunning = false;
+            simulationPaused = false;
+            // sleep(1000);
+            clearTable();
+            
+            
+            document.getElementById("start-simulation").style.display = "inline-block";
+            document.getElementById("pause-simulation").style.display = "none";
+            document.getElementById("resume-simulation").style.display = "none";
+            document.getElementById("stop-simulation").style.display = "none";
         }
 
-        document.getElementById("start-simulation").addEventListener("click", init);
+        document.getElementById("start-simulation").addEventListener("click", startSim);
         document.getElementById("pause-simulation").addEventListener("click", pauseSimulation);
         document.getElementById("resume-simulation").addEventListener("click", resumeSimulation);
+        // document.getElementById("stop-simulation").addEventListener("click", stopSim);
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
