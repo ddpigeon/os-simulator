@@ -388,7 +388,7 @@ display: block;
         </tr>
 
         <tr id="row_8" class="collapse">
-          <th> P8 </th>
+          <th> P8 </th>o
           <td><input id="arrive_8" type="number" class="form-control" value="0" /></td>
           <td><input id="burst_8" type="number" class="form-control" value="1" /></td>
           <td class="priority collapse"><input id="priority_8" type="number" class="form-control" value="8" /></td>
@@ -439,6 +439,7 @@ display: block;
               <li><a calcStyle="SJF" id="simple_calc" class="linkk">Shortest Job First (non-premptive)</a></li>
               <li><a calcStyle="Round Robin" id="fast_calc" class="linkk">Round Robin</a></li>
               <li><a calcStyle="Priority" id="fast_calc" class="linkk">Priority</a></li>
+              <li><a calcStyle="SRJF" id="fast_calc" class="linkk"> Shortest Remaining Job first</a></li>
             </ul>
           </div>
 
@@ -619,9 +620,8 @@ display: block;
     <span style="font-size: large; color: #ffffff;">Average turn around time:
       <div id="avgtat" style="color:rgb(0, 255, 255);"></div>
     </span>
-    <div><h1 style="color:white;">Explaination</h1></div>
-    <div  id="advdisfcfs" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white;">
-      <h2 style="color:white"><b>Advantages:</b></h2>    
+    <div  id="advdisfcfs" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: black; color: white;">
+      <h2 style="color: #00FEFE"><b>Advantages:</b></h2>    
       <p>
         <ul>
           <li>Simple and easy to implement: FCFS is a straightforward scheduling algorithm where processes are executed in the order they arrive, making it easy to understand and implement.</li>
@@ -705,6 +705,26 @@ display: block;
       </ul>
     </p>
   </div>
+  <div  id="advdissrjf" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(0, 0, 0); color: white; display: none;">
+    <h2 style="color: #00FEFE"><b>Advantages:</b></h2>    
+    <p>
+      <ul>
+        <li>Reduces average waiting time by prioritizing shorter jobs first.</li>
+        <li>Provides better response time for short jobs, enhancing system responsiveness.</li>
+        <li>Efficiently utilizes CPU time by minimizing the average turnaround time.</li>
+
+      </li>
+      </ul>
+    </p>
+  <br>
+  <h2 style="color: #00FEFE"><b>Disadvantages:</b></h2>    
+    <p>
+      <ul>
+        <li>May lead to starvation for longer jobs as they are constantly preempted by shorter ones.</li>
+        <li>Requires accurate prediction of job lengths, which can be challenging in practice.</li>
+        <li>Increased overhead due to frequent context switching, impacting system performance.</li>
+
+    </p>
     <!-- <button style="background-color: #FCBA28;color: #000000;" id="explanation">Show Explanation</button> -->
   
 

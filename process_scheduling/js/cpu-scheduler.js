@@ -692,6 +692,7 @@ $(document).ready(function () {
 				document.getElementById("advdisfcfs").style.display = "block";
 				document.getElementById("advdissjf").style.display = "none";
 				document.getElementById("advdispriority").style.display = "none";
+				document.getElementById("advdissrjf").style.display = "none";
 
 				FCFS();
 				processTotal = processArray;
@@ -703,6 +704,7 @@ $(document).ready(function () {
 				document.getElementById("advdisfcfs").style.display = "none";
 				document.getElementById("advdissjf").style.display = "block";
 				document.getElementById("advdispriority").style.display = "none";
+				document.getElementById("advdissrjf").style.display = "none";
 
 				SJF();
 				processTotal = processArray;
@@ -714,6 +716,7 @@ $(document).ready(function () {
 				document.getElementById("advdisfcfs").style.display = "none";
 				document.getElementById("advdissjf").style.display = "none";
 				document.getElementById("advdispriority").style.display = "none";
+                document.getElementById("advdissrjf").style.display = "block";
 
 				$("#algorithm_explanation").text("Shortest Remaining Job First will execute proccesses from smallest to biggest. If a new proccess arrives that is smaller than the currently running proccess, it will interrupt it.");
 				processTotal = processArray;
@@ -725,6 +728,7 @@ $(document).ready(function () {
 				document.getElementById("advdisfcfs").style.display = "none";
 				document.getElementById("advdissjf").style.display = "none";
 				document.getElementById("advdispriority").style.display = "none";
+				document.getElementById("advdissrjf").style.display = "none";
 
 				roundRobin();
 				processTotal = processArray;
@@ -740,6 +744,7 @@ $(document).ready(function () {
 				document.getElementById("advdisfcfs").style.display = "none";
 				document.getElementById("advdissjf").style.display = "none";
 				document.getElementById("advdispriority").style.display = "block";
+				document.getElementById("advdissrjf").style.display = "none";
 
 				priority();
 				processTotal = processArray;

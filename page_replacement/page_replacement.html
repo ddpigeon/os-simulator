@@ -219,13 +219,14 @@
 
     .flex-container {
         display: flex;
+        padding: 10px;
     }
     .heading{
         text-align: center;
     }
 
     .flex-child {
-        flex: 1;
+        flex: 0 0 auto;
     }
 
     .flex-child:first-child {
@@ -266,6 +267,7 @@
 
     .first {
         display: flex;
+        padding: 15px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -325,17 +327,29 @@
         </ul>
     </nav>
     <div class="container">
-        <div class="first card border border-dark" style="border: 2px solid yellow;">
+        <div class="first card border border-dark" style="border: 2px solid cyan;">
             <div class="heading">
                 <h1>PAGE REPLACEMENT VISUALIZER</h1>
             </div>
-            Enter the Stream of Pages :
+            <div class= "flex-container">
+                <div class = "flex-child">
+            Enter the Stream of Pages:
+                </div>
+                <div class = "flex-child">
             <div class="input-string">
                 <input type="text" id="input_string" required>
             </div>
-            Enter the number of Frames :
+                </div>
+            </div>
+            <div class= "flex-container">
+                <div class = "flex-child">
+            Enter the number of Frames:
+                </div>
+                <div class = "flex-child">
             <div class="frame-size">
                 <input id="frame_size" placeholder="" type="number" name="frame" min="1" required>
+            </div>
+                </div>
             </div>
             <label for="algo">Choose the Algorithm : </label>
             <div class="algorithm">
