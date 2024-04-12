@@ -303,7 +303,7 @@ display: block;
               <a href="../page_replacement/page_replacement_home.html">Page Replacement Algorithm</a>
               <a href="../Disk/disk.html">Disk Scheduling</a>
               <a href="../file_allocation/file.html">File Allocation</a>
-              <a href="../mft_mvt\MVFT.html">MFT and MVT</a>
+              <a href="../mft_mvt/MVFT.html">MFT and MVT</a>
           </div>
       </li>
         <li><button onclick="location.href='../about.html';" class="button button1">About</button></li>
@@ -609,18 +609,17 @@ display: block;
   </div>
 
 
-    <span style="font-size: large; color: #ffffff;">CPU Utilization:
-      <div id="utilization" style="color:rgb(0, 255, 255);"></div>
+    <span style="font-size: large; color: #ffffff; margin-left: 30px">CPU Utilization:
+      <div id="utilization" style="color:rgb(0, 255, 255); margin-left: 35px"></div>
     </span>
-    <span style="font-size: large; color: #ffffff;">Average waiting time:
-      <div id="avgwt" style="color:rgb(0, 255, 255);"></div>
+    <span style="font-size: large; color: #ffffff; margin-left: 30px">Average waiting time:
+      <div id="avgwt" style="color:rgb(0, 255, 255); margin-left: 35px"></div>
     </span>
-    <span style="font-size: large; color: #ffffff">Average turn around time:
-      <div id="avgtat" style="color:rgb(0, 255, 255);"></div>
+    <span style="font-size: large; color: #ffffff; margin-left: 30px">Average turn around time:
+      <div id="avgtat" style="color:rgb(0, 255, 255); margin-left: 35px"></div>
     </span>
-    <div><h1 style="color:white">Explaination</h1></div>
-    <div  id="advdisfcfs" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white;">
-      <h2 style="color:white"><b>Advantages:</b></h2>    
+    <div  id="advdisfcfs" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: #000000; color: white;">
+      <h2 style="color: #00FEFE"><b>Advantages:</b></h2>    
       <p>
         <ul>
           <li>Simple and easy to implement: FCFS is a straightforward scheduling algorithm where processes are executed in the order they arrive, making it easy to understand and implement.</li>
@@ -629,7 +628,7 @@ display: block;
         </ul>
       </p>
     <br>
-    <h2 style="color:white"><b>Disadvantages:</b></h2>    
+    <h2 style="color: #00FEFE"><b>Disadvantages:</b></h2>    
       <p>
         <ul>
           <li>Poor response time: FCFS may lead to long waiting times for processes with higher burst times, resulting in poor response time and interactive performance.</li>  
@@ -638,8 +637,8 @@ display: block;
         </ul>
       </p>
   </div>
-  <div  id="advdisroundrobin" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white; display: none;">
-    <h2 style="color:white"><b>Advantages:</b></h2>    
+  <div  id="advdisroundrobin" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(0, 0, 0); color: white; display: none;">
+    <h2 style="color: #00FEFE"><b>Advantages:</b></h2>    
     <p>
       <ul>
       <li>Fairness: Round Robin ensures fairness by providing equal opportunities for all processes to execute. Each process receives a fixed time slice called a time quantum, preventing any single process from monopolizing the CPU.
@@ -652,7 +651,7 @@ display: block;
       </ul>
     </p>
   <br>
-  <h2 style="color:white"><b>Disadvantages:</b></h2>    
+  <h2 style="color: #00FEFE"><b>Disadvantages:</b></h2>    
     <p>
       <ul>
         <li>Poor Performance for Long Processes: If a process requires a significantly longer time to complete than the time quantum, Round Robin can lead to poor performance. The overhead of frequent context switching between processes can degrade overall system performance.</li>
@@ -661,8 +660,8 @@ display: block;
       </ul>
     </p>
   </div>
-  <div  id="advdissjf" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white; display: none;">
-    <h2 style="color:white"><b>Advantages:</b></h2>    
+  <div  id="advdissjf" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(0, 0, 0); color: white; display: none;">
+    <h2 style="color: #00FEFE"><b>Advantages:</b></h2>    
     <p>
       <ul>
       <li>Minimizes Waiting Time: SJF scheduling aims to minimize the average waiting time of processes by selecting the shortest job first. This approach ensures that shorter jobs are executed earlier, reducing the time other processes have to wait.</li>
@@ -673,7 +672,7 @@ display: block;
       </ul>
     </p>
   <br>
-  <h2 style="color:white"><b>Disadvantages:</b></h2>    
+  <h2 style="color: #00FEFE"><b>Disadvantages:</b></h2>    
     <p>
       <ul>
         <li>Starvation of Longer Jobs: SJF scheduling prioritizes shorter jobs, which can result in longer jobs experiencing starvation. If a series of short jobs continuously arrives, longer jobs may keep waiting indefinitely, leading to poor fairness in resource allocation.</li></ul>
@@ -682,8 +681,8 @@ display: block;
 
     </p>
   </div>
-  <div  id="advdispriority" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(50, 50, 50); color: white; display: none;">
-    <h2 style="color:white"><b>Advantages:</b></h2>    
+  <div  id="advdispriority" style="margin: 20px;border-radius: 20px; padding: 20px; background-color: rgb(0, 0, 0); color: white; display: none;">
+    <h2 style="color: #00FEFE"><b>Advantages:</b></h2>    
     <p>
       <ul>
       <li>Efficient Resource Allocation: Priority CPU scheduling allows for the assignment of different priorities to processes based on their importance or urgency. This enables the CPU to allocate resources to high-priority processes first, ensuring critical tasks are completed promptly.</li>
