@@ -2,222 +2,217 @@
 <html lang="en" class="no-js">
 
 <head>
-	<br>
-	<title>Indexed Allocation</title>
+    <title>Indexed Allocation</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="stylesfile.css">
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>OS Simulator</title>
-	<meta name="description" content="Nifty Modal Window Effects with CSS Transitions and Animations" />
-	<meta name="keywords"
-		content="modal, window, overlay, modern, box, css transition, css animation, effect, 3d, perspective" />
-	<meta name="author" content="Codrops" />
-	<link rel="shortcut icon" href="../favicon.ico">
-	<link rel="stylesheet" type="text/css" href="default.css" />
-	<link rel="stylesheet" type="text/css" href="component.css" />
-	<script src="index.custom.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css"
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Simulator</title>
+    <style>
+        body {
+            background-color: black;
+            padding: 0px;
+        }
+
+        .container {
+            background-color: rgb(0, 255, 255);
+            height: 100vh;
+        }
+
+        input, button {
+            color: black;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            color: black;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
-<body style="background-color: black; padding:0px">
-
+<body>
 	<div style="display: flex; flex-direction: row;">
-        <a class="main-logo" href="../index.html" > OS VISUALIZER </a>
+		<a class="main-logo" href="../index.html"> OS VISUALIZER </a>
 
-        <nav style="display: flex; flex-direction: row; justify-content: flex-end; flex: auto;">
-            <ul>
-              <li><button onclick="location.href = '../index.html';" class="button button3">Home</button></li>
-              <li class="dropdown check-drp"><button class="button button3 dropbtn">Algorithms</button>
-                <div class="dropdown-content">
-                  <a href="../process_scheduling/process.html" style="background-color: black;">Process Scheduling</a>
-                  <a href="../process_sync\home.html" style="background-color: black;">Process Synchronization</a>
-                  <a href="../Bankers/bankers.html" style="background-color: black;">Bankers Algorithm</a>
-                  <a href="../mft_mvt/Fit.html" style="background-color: black;">Fit Algorithms</a>
-                  <a href="../page_replacement/page_replacement_home.html" style="background-color: black;">Page Replacement Algorithm</a>
-                  <a href="../Disk/disk.html" style="background-color: black;">Disk Scheduling</a>
-                  <a href="../file_allocation/file.html" style="background-color: black;">File Allocation</a>
-                  <a href="../mft_mvt\MVFT.html" style="background-color: black;">MFT and MVT</a>
-                </div>
-              </li>
-              <li><button class="button button3" onclick="location.href = '../about.html';">About</button></li>
-              <li><button class="button button3" onclick="location.href = '../references.html';">References</button></li>
-            </ul>
-          </nav>
-        </div>
-
-
-	<div class="container" style="background-color: rgb(0, 254, 254); height: 100vh">
-
-		<div class="Text" style="color: black; margin-left: 22px">
-			<h1 class="some" behavior="alternate" scrollamount=10 style="font-weight: bold">INDEXED ALLOCATION</h1>
-		
-			<div id="sequ">
-				<div class="visible1">
-					<p> Enter the size of memory(number of blocks)</p>
-					<input id="nof" type="number" style="background-color:white; color: black;">
-					<button class="s_done button" onclick="getSize()">Submit</button>
-
-					<br><br>
-
-					<div class="s_form s_hide" id="vis2">
-						<p> Please add file details </p>
-						File name: <input id="file_name" type="text" style="background-color:white; color: black;">
-						File size(number of blocks): <input id="file_size" type="number" style="background-color:white; color: black;">
-						<button class="s_done button" onclick="addFile()">Add</button>
-						<br>
+		<nav style="display: flex; flex-direction: row; justify-content: flex-end; flex: auto;">
+			<ul>
+				<li><button onclick="location.href = '../index.html';" class="button button3">Home</button></li>
+				<li class="dropdown check-drp"><button class="button button3 dropbtn">Algorithms</button>
+					<div class="dropdown-content">
+						<a href="../process_scheduling/process.html" style="background-color: black;">Process
+							Scheduling</a>
+						<a href="../process_sync\home.html" style="background-color: black;">Process Synchronization</a>
+						<a href="../Bankers/bankers.html" style="background-color: black;">Bankers Algorithm</a>
+						<a href="../mft_mvt/Fit.html" style="background-color: black;">Fit Algorithms</a>
+						<a href="../page_replacement/page_replacement_home.html" style="background-color: black;">Page
+							Replacement Algorithm</a>
+						<a href="../Disk/disk.html" style="background-color: black;">Disk Scheduling</a>
+						<a href="../file_allocation/file.html" style="background-color: black;">File Allocation</a>
+						<a href="../mft_mvt\MVFT.html" style="background-color: black;">MFT and MVT</a>
 					</div>
-					<canvas id="can" width="1500" height="50" col></canvas>
-					<p id="op1"></p>
-					<p id="op"></p>
-				</div>
-			</div>
-		</div>
+				</li>
+				<li><button class="button button3" onclick="location.href = '../about.html';">About</button></li>
+				<li><button class="button button3" onclick="location.href = '../references.html';">References</button>
+				</li>
+			</ul>
+		</nav>
 	</div>
+    <div class="container">
+        <div class="Text" style="color: black; margin-left: 22px">
+            <h1 class="some" behavior="alternate" scrollamount=10 style="font-weight: bold">INDEXED ALLOCATION</h1>
+            <div id="sequ">
+                <div class="visible1">
+                    <p> Enter the size of memory(number of blocks)</p>
+                    <input id="nof" type="number">
+                    <button class="s_done" onclick="getSize()">Submit</button>
 
+                    <br><br>
 
+                    <div class="s_form s_hide" id="vis2">
+                        <p> Please add file details </p>
+						<div>File name: <input id="file_name" type="text"></div>
+                        <br>
+						<div>File size(number of blocks): <input id="file_size" type="number"></div>
+                        <br>
+						<div>Block numbers (comma-separated): <input id="block_numbers" type="text"></div>
+						<br>
+                        
+                        <button class="s_done" onclick="addFile()">Add</button>
+                        <br>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>File</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Size</th>
+                            <th>Blocks</th>
+                        </tr>
+                        <tbody id="output"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 <script>
-	canv = document.getElementById("can");
-	var ctx = canv.getContext("2d");
+    var used, next, remaining, allocations;
+    var file_sizes = new Array(200);
+    var file_names = new Array(200);
+    var block_numbers_arr = new Array(200);
+    var count = 0;
+    var memSize;
 
-	var used, next, remaining, allocations;
-	var colors = new Array(200);
-	var file_sizes = new Array(200);
-	var file_names = new Array(200);
-	var starts = new Array(200);
-	var ends = new Array(200);
-	var count = 0;
-	var point = -1;
-	var memSize;
-	var a = 0, b = 0;
-	function getSize() {
-		memSize = document.getElementById("nof").value;
+    function getSize() {
+        memSize = document.getElementById("nof").value;
 
-		if (memSize != "") {
-			vis2 = document.getElementById("vis2");
-			vis2.style.visibility = "visible";
-			vis2.classList.remove("s_hide");
+        if (memSize != "") {
+            vis2 = document.getElementById("vis2");
+            vis2.style.visibility = "visible";
+            vis2.classList.remove("s_hide");
 
-			used = new Array(parseInt(memSize));
-			next = new Array(parseInt(memSize));
-			remaining = parseInt(memSize);
-			allocations = new Array(parseInt(memSize));
-			for (var i = 0; i < parseInt(memSize); i++) {
-				allocations[i] = -1;
-				used[i] = false;
-				next[i] = -1;
-			}
-			// console.log(next);
-			// console.log(allocations);
-		}
-		else
-			alert("Please enter valid size!");
-	}
+            used = new Array(parseInt(memSize));
+            next = new Array(parseInt(memSize));
+            remaining = parseInt(memSize);
+            allocations = new Array(parseInt(memSize));
+            for (var i = 0; i < parseInt(memSize); i++) {
+                allocations[i] = -1;
+                used[i] = false;
+                next[i] = -1;
+            }
+        }
+        else
+            alert("Please enter valid size!");
+    }
 
-	function addFile() {
-		if (count == 0) {
-			for (var i = 0; i < memSize; i++) {
-				if (Math.random() > 0.5) {
-					remaining--;
-					used[i] = true;
-				}
-				next[i] = -1;
-			}
-			for (var i = 0; i < 200; i++) {
-				colors[i] = color();
-				file_sizes[i] = 0;
-				file_names[i] = "";
-				starts[i] = 0;
-				ends[i] = 0;
-			}
-		}
-		var name = document.getElementById("file_name").value;
-		var size = document.getElementById("file_size").value;
-		size = parseInt(size);
-		var cnt = 0;
-		if (name != "" && size != "") {
-			if (size > remaining) {
-				alert("Cannot allocate!!");
-			}
-			else {
-				var prev = -1;
-				for (var i = 0; i < size; i++) {
-					for (var j = 0; j < memSize; j++) {
-						if (!used[j]) {
-							if (prev != -1) {
-								next[prev] = j;
-							}
-							if (i == 0)
-								starts[count] = j;
-							prev = j;
-							allocations[j] = count + 1;
-							used[j] = true;
-							break;
-						}
+    function addFile() {
+        var name = document.getElementById("file_name").value;
+        var size = document.getElementById("file_size").value;
+        var blockNumbers = document.getElementById("block_numbers").value;
+        size = parseInt(size);
 
-					}
-				}
-				next[prev] = -1;
-				ends[count] = prev;
-				file_names[count] = name;
-				file_sizes[count] = size;
-				count++;
-				showOutput();
-				remaining -= size;
-				console.log(allocations);
-			}
+        if (name != "" && size != "" && blockNumbers != "") {
+            if (size > remaining) {
+                alert("Cannot allocate!!");
+            }
+            else {
+                block_numbers_arr[count] = blockNumbers.split(',').map(Number).filter(function(n) { return !isNaN(n); });
+                if (block_numbers_arr[count].length !== size) {
+                    alert("Invalid block numbers. Please enter " + size + " block numbers separated by commas.");
+                    return;
+                }
+                for (var i = 0; i < block_numbers_arr[count].length; i++) {
+                    var blockNum = block_numbers_arr[count][i];
+                    if (blockNum >= memSize || blockNum < 0 || used[blockNum]) {
+                        alert("Invalid block number: " + blockNum);
+                        return;
+                    }
+                    allocations[blockNum] = count + 1;
+                    used[blockNum] = true;
+                }
+                file_names[count] = name;
+                file_sizes[count] = size;
+                count++;
+                showOutput();
+                remaining -= size;
+            }
+        }
+        else {
+            alert("Please enter all details!!");
+        }
+    }
 
-		}
-		else {
-			alert("Please enter all details!!");
-		}
+    function showOutput() {
+        var output = document.getElementById("output");
+        output.innerHTML = "";
 
-	}
+        for (var i = 0; i < count; i++) {
+            var start = block_numbers_arr[i][0];
+            var end = block_numbers_arr[i][block_numbers_arr[i].length - 1];
+            var row = document.createElement("tr");
 
-	function showOutput() {
-		var str = "";
-		var j;
-		document.getElementById("op1").innerHTML = "File______Start_____End_____Size";
-		for (var i = 0; i < count; i++) {
-			str += "<br />" + file_names[i] + "________" + starts[i] + "________" + ends[i] + "________" + file_sizes[i] + ":";
-			//j = starts[count];
-			for (j = 0; j < memSize; j++) {
-				//console.log(allocations[j], count);
-				if (parseInt(allocations[j]) == i + 1) {
-					//console.log(j);
-					str += "\t\t" + j + "--->";
-				}
-			}
+            var fileCell = document.createElement("td");
+            fileCell.innerHTML = file_names[i];
+            row.appendChild(fileCell);
 
-			//ctx.fillStyle = colors[i];
-			//ctx.fillRect(starts[i] * canv.width / memSize, 0, ends[i] * canv.width / memSize, canv.height);
-			//console.log(used, count);
+            var startCell = document.createElement("td");
+            startCell.innerHTML = start;
+            row.appendChild(startCell);
 
-		}
-		document.getElementById("op").innerHTML = str;
+            var endCell = document.createElement("td");
+            endCell.innerHTML = end;
+            row.appendChild(endCell);
 
-	}
+            var sizeCell = document.createElement("td");
+            sizeCell.innerHTML = file_sizes[i];
+            row.appendChild(sizeCell);
 
-	function color() {
-		var hex = '0123456789abcdef';
-		var col = '#';
-		for (i = 0; i < 6; i++)
-			col += hex[Math.floor(Math.random() * 16)]
-		return col;
-	}
+            var blocksCell = document.createElement("td");
+            blocksCell.innerHTML = block_numbers_arr[i].join(',');
+            row.appendChild(blocksCell);
 
+            output.appendChild(row);
+        }
+    }
 </script>
 
 </html>

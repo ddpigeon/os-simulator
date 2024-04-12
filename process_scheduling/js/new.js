@@ -130,157 +130,157 @@ const run = () => {
 
   //........................................................Section : 3(III) : Code for dislaying Bar chart.........................................
   //creating an array of process id in "Pi" format. 
-  var myChartLabelArray = mainOutput.o_pid;
-  myChartLabelArray = myChartLabelArray.map(i => 'P' + i);
+  //var myChartLabelArray = mainOutput.o_pid;
+  //myChartLabelArray = myChartLabelArray.map(i => 'P' + i);
 
 
-  //Section for the Bar chart...
-  const myBarChart = new Chart(
-    document.getElementById('myBarChart'), {
-    type: 'bar',
-    data: {
-      labels: myChartLabelArray,
-      datasets: [{
-        label: 'burst time',
-        data: mainOutput.o_bursttime,
-        backgroundColor: [
-          '#58508d',
-        ],
-        borderColor: [
-          'rgba(176,162,247,1)',
-        ],
-        borderWidth: 1
-      },
-      {
-        label: 'Waiting Time',
-        data: mainOutput.waitingTime,
-        backgroundColor: [
-          '#ff6361',
-        ],
-        borderColor: [
-          'rgba(176,162,247,1)',
-        ],
-        borderWidth: 1
-      },
-      {
-        label: 'turn around time',
-        data: mainOutput.turnAroundTime,
-        backgroundColor: [
-          '#ffa600',
-        ],
-        borderColor: [
-          'rgba(176,162,247,1)',
-        ],
-        borderWidth: 1
-      }
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    },
-  }
-  );
+  ////Section for the Bar chart...
+  //const myBarChart = new Chart(
+  //  document.getElementById('myBarChart'), {
+  //  type: 'bar',
+  //  data: {
+  //    labels: myChartLabelArray,
+  //    datasets: [{
+  //      label: 'burst time',
+  //      data: mainOutput.o_bursttime,
+  //      backgroundColor: [
+  //        '#58508d',
+  //      ],
+  //      borderColor: [
+  //        'rgba(176,162,247,1)',
+  //      ],
+  //      borderWidth: 1
+  //    },
+  //    {
+  //      label: 'Waiting Time',
+  //      data: mainOutput.waitingTime,
+  //      backgroundColor: [
+  //        '#ff6361',
+  //      ],
+  //      borderColor: [
+  //        'rgba(176,162,247,1)',
+  //      ],
+  //      borderWidth: 1
+  //    },
+  //    {
+  //      label: 'turn around time',
+  //      data: mainOutput.turnAroundTime,
+  //      backgroundColor: [
+  //        '#ffa600',
+  //      ],
+  //      borderColor: [
+  //        'rgba(176,162,247,1)',
+  //      ],
+  //      borderWidth: 1
+  //    }
+  //    ]
+  //  },
+  //  options: {
+  //    scales: {
+  //      y: {
+  //        beginAtZero: true
+  //      }
+  //    }
+  //  },
+  //}
+  //);
 
-  //........................................................Section : 3(IV) : Code for displaying pie chart.........................................
-  // section for the pie chart for Waiting time...
-  const myChart = new Chart(
-    document.getElementById('myChart'), {
-    type: 'pie',
-    data: {
-      labels: myChartLabelArray,
-      datasets: [{
-        label: 'Waiting Time',
-        data: mainOutput.waitingTime,
-        backgroundColor: [
-          '#003f5c',
-          '#58508d',
-          '#ff6361',
-          '#ffa600',
-          '#77C2FE',
-          '#bc5090',
-          '#0b9a8d',
-          '#E65F8E',
-          '#323B81',
-          '#9c2162',
+  ////........................................................Section : 3(IV) : Code for displaying pie chart.........................................
+  //// section for the pie chart for Waiting time...
+  //const myChart = new Chart(
+  //  document.getElementById('myChart'), {
+  //  type: 'pie',
+  //  data: {
+  //    labels: myChartLabelArray,
+  //    datasets: [{
+  //      label: 'Waiting Time',
+  //      data: mainOutput.waitingTime,
+  //      backgroundColor: [
+  //        '#003f5c',
+  //        '#58508d',
+  //        '#ff6361',
+  //        '#ffa600',
+  //        '#77C2FE',
+  //        '#bc5090',
+  //        '#0b9a8d',
+  //        '#E65F8E',
+  //        '#323B81',
+  //        '#9c2162',
 
-        ],
-        borderColor: [
-          'rgba(176,162,247,1)',
-          'rgba(55,227,128,1)',
-          'rgba(255, 26, 104, 1)',
-          'rgba(0,207,255,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(0, 0, 0, 1)',
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      plugins: {
-        datalabels: {
-          color: 'white',
-        }
-      }
-    },
-    plugins: [ChartDataLabels],
-  }
-  );
+  //      ],
+  //      borderColor: [
+  //        'rgba(176,162,247,1)',
+  //        'rgba(55,227,128,1)',
+  //        'rgba(255, 26, 104, 1)',
+  //        'rgba(0,207,255,1)',
+  //        'rgba(54, 162, 235, 1)',
+  //        'rgba(255, 206, 86, 1)',
+  //        'rgba(75, 192, 192, 1)',
+  //        'rgba(153, 102, 255, 1)',
+  //        'rgba(255, 159, 64, 1)',
+  //        'rgba(0, 0, 0, 1)',
+  //      ],
+  //      borderWidth: 1
+  //    }]
+  //  },
+  //  options: {
+  //    plugins: {
+  //      datalabels: {
+  //        color: 'white',
+  //      }
+  //    }
+  //  },
+  //  plugins: [ChartDataLabels],
+  //}
+  //);
 
 
-  // section for the pie chart for Turn around time...
-  const mytatChart = new Chart(
-    document.getElementById('mytatChart'), {
-    type: 'pie',
-    data: {
-      labels: myChartLabelArray,
-      datasets: [{
-        label: 'Turn around Time',
-        data: mainOutput.turnAroundTime,
-        backgroundColor: [
-          '#003f5c',
-          '#58508d',
-          '#ff6361',
-          '#ffa600',
-          '#77C2FE',
-          '#bc5090',
-          '#0b9a8d',
-          '#E65F8E',
-          '#323B81',
-          '#9c2162',
-        ],
-        borderColor: [
-          'rgba(176,162,247,1)',
-          'rgba(55,227,128,1)',
-          'rgba(255, 26, 104, 1)',
-          'rgba(0,207,255,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(0, 0, 0, 1)',
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      plugins: {
-        datalabels: {
-          color: 'white',
-        }
-      }
-    },
-    plugins: [ChartDataLabels],
-  }
-  );
+  //// section for the pie chart for Turn around time...
+  //const mytatChart = new Chart(
+  //  document.getElementById('mytatChart'), {
+  //  type: 'pie',
+  //  data: {
+  //    labels: myChartLabelArray,
+  //    datasets: [{
+  //      label: 'Turn around Time',
+  //      data: mainOutput.turnAroundTime,
+  //      backgroundColor: [
+  //        '#003f5c',
+  //        '#58508d',
+  //        '#ff6361',
+  //        '#ffa600',
+  //        '#77C2FE',
+  //        '#bc5090',
+  //        '#0b9a8d',
+  //        '#E65F8E',
+  //        '#323B81',
+  //        '#9c2162',
+  //      ],
+  //      borderColor: [
+  //        'rgba(176,162,247,1)',
+  //        'rgba(55,227,128,1)',
+  //        'rgba(255, 26, 104, 1)',
+  //        'rgba(0,207,255,1)',
+  //        'rgba(54, 162, 235, 1)',
+  //        'rgba(255, 206, 86, 1)',
+  //        'rgba(75, 192, 192, 1)',
+  //        'rgba(153, 102, 255, 1)',
+  //        'rgba(255, 159, 64, 1)',
+  //        'rgba(0, 0, 0, 1)',
+  //      ],
+  //      borderWidth: 1
+  //    }]
+  //  },
+  //  options: {
+  //    plugins: {
+  //      datalabels: {
+  //        color: 'white',
+  //      }
+  //    }
+  //  },
+  //  plugins: [ChartDataLabels],
+  //}
+  //);
 
 
 }
